@@ -4,7 +4,8 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function seed() {
-  const note = await prisma.note.create({
+  /**
+  await prisma.note.create({
     data: {
       title: "My first note",
       body: "Hello, world!"
@@ -12,6 +13,7 @@ async function seed() {
   });
 
   console.log(`Database has been seeded. 🌱`);
+  */
 }
 
 seed()
