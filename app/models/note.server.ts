@@ -13,7 +13,7 @@ export type Note = {
  */
 
 export function getNote(
-  id: Pick<Note, "id">) {
+  { id }: Pick<Note, "id">) {
   return prisma.note.findFirst({
     select: { id: true, body: true, title: true },
     where: { id },
