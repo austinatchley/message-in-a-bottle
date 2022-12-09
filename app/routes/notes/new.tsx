@@ -4,11 +4,8 @@ import { Form, useActionData } from "@remix-run/react";
 import * as React from "react";
 
 import { createNote } from "~/models/note.server";
-import { requireUserId } from "~/session.server";
 
 export async function action({ request }: ActionArgs) {
-  const userId = await requireUserId(request);
-
   const formData = await request.formData();
   const title = formData.get("title");
   const body = formData.get("body");
@@ -27,7 +24,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  const note = await createNote({ title, body, userId });
+  const note = await createNote({ title, body });
 
   return redirect(`/notes/${note.id}`);
 }

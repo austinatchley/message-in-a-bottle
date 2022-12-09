@@ -1,15 +1,16 @@
 import { prisma } from "~/db.server";
+import type { Note } from "@prisma/client";
 
 /**
  * Custom Note Model
  * 
- */
 export type Note = {
   id: string
   title: string
   body: string
   createdAt: Date
 }
+ */
 
 export function getNote(
   id: Pick<Note, "id">) {
@@ -19,11 +20,11 @@ export function getNote(
   });
 }
 
-export function getNoteListItems(userId: string) {
+export function getNoteListItems({ userId }: { userId: string }) {
   return prisma.note.findMany({
     // where {},
     select: { id: true, title: true },
-    orderBy: { updatedAt: "desc" },
+    orderBy: { createdAt: "desc" },
   });
 }
 
