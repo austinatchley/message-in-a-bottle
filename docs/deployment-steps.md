@@ -31,3 +31,15 @@ npm run dev
 ```
 fly list apps
 ```
+
+## Important dotfiles for Deployment
+
+`.github/workflows/deploy.yml` controls GitHub Actions
+
+`Dockerfile` controls the docker build step, which is needed for both the db and the server build
+
+`.env` gets created in build environments to store the db URL and session creds. When deploying through GitHub Actions, this file is created and cached. It shouldn't be committed to version control
+
+`fly.toml` controls the Fly configuration, including a small snippet of build code. This step has a sneaky step where the server triggers db migrations on changes to the schema
+
+`prisma/schema.prisma` defines the Prisma schema, which is used to control the DB schema as well as generating native TypeScript types for the defined database objects
