@@ -210,6 +210,10 @@ jobs:
           args: "deploy --app ${{ steps.app_name.outputs.value }} --image registry.fly.io/${{ steps.app_name.outputs.value }}:${{ github.ref_name }}-${{ github.sha }}"
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      
+      - name: 🚀 Deploy Staging DB
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: npx prisma generate && npx prisma migrate deploy
 
       # TODO: Once I add a Production environment, I should uncomment and reconfigure this section. I should also use the `dev` branch
       #   for the staging environment, and then master branch for this one
