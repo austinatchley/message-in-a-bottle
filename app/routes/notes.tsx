@@ -2,11 +2,10 @@ import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
-import { getNoteListItems } from "~/models/note.server";
+import { getNotes } from "~/models/note.server";
 
 export async function loader({ request }: LoaderArgs) {
-  const userId: string = "placeholderUserId";
-  const noteListItems = await getNoteListItems({ userId });
+  const noteListItems = await getNotes();
   return json({ noteListItems });
 }
 

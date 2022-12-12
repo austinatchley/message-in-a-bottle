@@ -30,6 +30,8 @@ export default function NoteDetailsPage() {
     <div>
       <h3 className="text-2xl font-bold">{data.note.title}</h3>
       <p className="py-6">{data.note.body}</p>
+      <p className="py-6">{"xpos: " + data.note.xpos}</p>
+      <p className="py-6">{"ypos: " + data.note.ypos}</p>
       <hr className="my-4" />
       <Form method="post">
         <button

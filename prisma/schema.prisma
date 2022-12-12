@@ -9,8 +9,12 @@ generator client {
 
 model Note {
   id    String @id @default(cuid())
+  
   title String
   body  String
+
+  xpos  Int
+  ypos  Int
 
   createdAt DateTime @default(now())
 }
