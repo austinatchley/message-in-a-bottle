@@ -1,6 +1,9 @@
 import { faker } from "@faker-js/faker";
 
 describe("smoke tests", () => {
+  const mockXPos: number = 1;
+  const mockYPos: number = 2;
+
   beforeEach(() => {});
   afterEach(() => {});
 
@@ -8,6 +11,8 @@ describe("smoke tests", () => {
     const testNote = {
       title: faker.lorem.words(1),
       body: faker.lorem.sentences(1),
+      xpos: mockXPos,
+      ypos: mockYPos
     };
     cy.visitAndCheck("/");
 
@@ -18,6 +23,8 @@ describe("smoke tests", () => {
 
     cy.findByRole("textbox", { name: /title/i }).type(testNote.title);
     cy.findByRole("textbox", { name: /body/i }).type(testNote.body);
+    cy.findByRole("textbox", { name: /xpos/i }).type("" + testNote.xpos);
+    cy.findByRole("textbox", { name: /ypos/i }).type("" + testNote.ypos);
     cy.findByRole("button", { name: /save/i }).click();
 
     cy.findByRole("button", { name: /delete/i }).click();
