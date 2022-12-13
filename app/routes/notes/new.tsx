@@ -15,14 +15,14 @@ export async function action({ request }: ActionArgs) {
 
   if (typeof title !== "string" || title.length === 0) {
     return json(
-      { errors: { title: "Title is required", body: null } },
+      { errors: { title: "Title is required", body: null, xpos: 0, ypos: 0 } },
       { status: 400 }
     );
   }
 
   if (typeof body !== "string" || body.length === 0) {
     return json(
-      { errors: { body: "Body is required", title: null } },
+      { errors: { body: "Body is required", title: null, xpos: 0, ypos: 0 } },
       { status: 400 }
     );
   }
@@ -32,14 +32,14 @@ export async function action({ request }: ActionArgs) {
 
   if (typeof xpos !== "string" || xpos.length === 0) {
     return json(
-      { errors: { body: "xpos is required", title: null } },
+      { errors: { body: "xpos is required", title: null, xpos: 0, ypos: 0 } },
       { status: 400 }
     );
   }
 
   if (typeof ypos !== "string" || ypos.length === 0) {
     return json(
-      { errors: { body: "ypos is required", title: null } },
+      { errors: { body: "ypos is required", title: null, xpos: 0, ypos: 0 } },
       { status: 400 }
     );
   }
