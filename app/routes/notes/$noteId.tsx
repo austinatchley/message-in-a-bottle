@@ -28,10 +28,19 @@ export default function NoteDetailsPage() {
 
   return (
     <div>
-      <h3 className="text-2xl font-bold">{data.note.title}</h3>
-      <p className="py-6">{data.note.body}</p>
-      <p className="py-6">{"xpos: " + data.note.xpos}</p>
-      <p className="py-6">{"ypos: " + data.note.ypos}</p>
+      <div className="flex relative">
+        <div className={`relative bottom-${data.note.ypos} left-${data.note.xpos} box-border h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50`}>
+          <p className="py-2">{data.note.title}</p>
+          <br></br>
+          <p className="py-2">{data.note.body}</p>
+        </div>
+      </div>
+      <br></br>
+      <h3 className="text-2xl font-bold">Debug</h3>
+      <h3 className="py-2">{"title: " + data.note.title}</h3>
+      <p className="py-2">{"body: " + data.note.body}</p>
+      <p className="py-2">{"xpos: " + data.note.xpos}</p>
+      <p className="py-2">{"ypos: " + data.note.ypos}</p>
       <hr className="my-4" />
       <Form method="post">
         <button
