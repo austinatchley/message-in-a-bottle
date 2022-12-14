@@ -2,10 +2,10 @@ import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
-import { getNotes } from "~/models/note.server";
+import { getNotesFullRepresentation } from "~/models/note.server";
 
 export async function loader({ request }: LoaderArgs) {
-  const noteListItems = await getNotes();
+  const noteListItems = await getNotesFullRepresentation();
   return json({ noteListItems });
 }
 
@@ -21,30 +21,22 @@ export default function NotesViewPage() {
       </header>
 
       <main className="flex h-full bg-white">
-        <div className="h-full w-80 border-r bg-gray-50">
-          <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Note
-          </Link>
-
-          <hr />
-
+        <div className="bg-gray-20">
           {data.noteListItems.length === 0 ? (
             <p className="p-4">No notes yet</p>
           ) : (
-            <div className="h-full">
-              {data.noteListItems.map((note) => (
-
-                <p className="p-4">
-                  {note.title + ", (" + note.xpos + ", " + note.ypos + ")"}
-                </p>
-              ))}
-            </div>
-          )
-          }
-        </div>
-
-        <div className="flex-1 p-6">
-          <Outlet />
+            <p>{
+              data.noteListItems.map((note) => (
+                <div key={note.id} className="flex relative">
+                  <div className={`relative bottom-${note.ypos} left-${note.xpos} box-border h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50`}>
+                    <p className="py-2">{note.title}</p>
+                    <br></br>
+                    <p className="py-2">{note.body}</p>
+                  </div>
+                </div>
+              ))
+            }</p>
+          )}
         </div>
       </main>
     </div>
