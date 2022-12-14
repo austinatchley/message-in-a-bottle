@@ -122,7 +122,7 @@ export default function NewNotePage() {
           <textarea
             ref={xposRef}
             name="xpos"
-            rows={8}
+            rows={1}
             className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
             aria-invalid={actionData?.errors?.xpos ? true : undefined}
             aria-errormessage={
@@ -143,7 +143,7 @@ export default function NewNotePage() {
           <textarea
             ref={yposRef}
             name="ypos"
-            rows={8}
+            rows={1}
             className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
             aria-invalid={actionData?.errors?.ypos ? true : undefined}
             aria-errormessage={
