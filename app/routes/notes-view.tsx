@@ -9,7 +9,7 @@ export async function loader({ request }: LoaderArgs) {
   return json({ noteListItems });
 }
 
-export default function NotesPage() {
+export default function NotesViewPage() {
   const data = useLoaderData<typeof loader>();
 
   return (
