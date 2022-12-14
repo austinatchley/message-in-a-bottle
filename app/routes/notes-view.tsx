@@ -20,12 +20,12 @@ export default function NotesViewPage() {
         </h1>
       </header>
 
-      <main className="flex h-full bg-white">
+      <main className="flex mx-auto h-full bg-white">
         <div className="bg-gray-20">
           {data.noteListItems.length === 0 ? (
             <p className="p-4">No notes yet</p>
           ) : (
-            <p>{
+            <div className="grid grid-cols-4 gap-10">{
               data.noteListItems.map((note) => (
                 <div key={note.id} className="flex relative">
                   <div className={`relative bottom-${note.ypos} left-${note.xpos} box-border h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50`}>
@@ -35,7 +35,7 @@ export default function NotesViewPage() {
                   </div>
                 </div>
               ))
-            }</p>
+            }</div>
           )}
         </div>
       </main>
