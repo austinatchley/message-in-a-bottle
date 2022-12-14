@@ -27,9 +27,6 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  console.log(xpos);
-  console.log(ypos);
-
   if (typeof xpos !== "string" || xpos.length === 0) {
     return json(
       { errors: { body: "xpos is required", title: null, xpos: 0, ypos: 0 } },
