@@ -13,18 +13,9 @@ export async function loader({ request, params }: LoaderArgs) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const qrCodeUrl: string = getQrCodeUrl(note.id);
-
-  return json({ note: note, qrCodeUrl: qrCodeUrl });
+  return json({ note });
 }
 
-function getQrCodeUrl(id: string): string {
-  const sizeHorizontal = 150;
-  const sizeVertical = 150;
-  const baseUrl = "https://message-in-a-bottle.fly.dev";
-  const noteUrl = `${baseUrl}/notes/${id}`;
-  return `https://api.qrserver.com/v1/create-qr-code/?size=${sizeHorizontal}x${sizeVertical}&data=${noteUrl}`;
-}
 
 export async function action({ request, params }: ActionArgs) {
   invariant(params.noteId, "noteId not found");
@@ -53,7 +44,6 @@ export default function NoteDetailsPage() {
       <p className="py-2">{"xpos: " + data.note.xpos}</p>
       <p className="py-2">{"ypos: " + data.note.ypos}</p>
       <hr className="my-4" />
-      <img src={`${data.qrCodeUrl}`}></img>
       <Form method="post">
         <button
           type="submit"

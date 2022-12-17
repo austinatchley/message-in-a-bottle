@@ -1,15 +1,28 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
+import invariant from "tiny-invariant";
 
 import { getNotesFullRepresentation } from "~/models/note.server";
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request, params }: LoaderArgs) {
+  invariant(params.boardId, "boardId not found");
+
   const noteListItems = await getNotesFullRepresentation();
-  return json({ noteListItems });
+  const qrCodeUrl = getQrCodeUrl(params.boardId);
+
+  return json({ noteListItems, qrCodeUrl });
 }
 
-export default function NotesViewPage() {
+function getQrCodeUrl(id: string): string {
+  const size = 100;
+  const baseUrl = "https://message-in-a-bottle.fly.dev";
+  const noteUrl = `${baseUrl}/notes/${id}`;
+
+  return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${noteUrl}`;
+}
+
+export default function BoardPage() {
   const data = useLoaderData<typeof loader>();
 
   return (
@@ -18,6 +31,7 @@ export default function NotesViewPage() {
         <h1 className="text-3xl font-bold">
           <Link to=".">Notes</Link>
         </h1>
+        <img src={`${data.qrCodeUrl}`}></img>
       </header>
 
       <main className="flex mx-auto h-full bg-white">
