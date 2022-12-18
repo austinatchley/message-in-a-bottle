@@ -27,4 +27,6 @@ model Board {
 
   title String
   notes Note[]
+
+  createdAt DateTime @default(now())
 }
