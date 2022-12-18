@@ -16,11 +16,11 @@ export function getBoards() {
   });
 }
 
-export function getBoardsInBoard(
-  { id, notes }: Pick<Board, "id" | "notes">) {
-  return prisma.board.findFirst({
-    select: { id: true, notes: true },
-    where: { id },
+export function getNotesInBoard(
+  { id }: Pick<Board, "id">) {
+  return prisma.board.findUnique({
+    where: { id: id },
+    include: { notes: true }
   });
 }
 
