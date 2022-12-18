@@ -1,58 +1,77 @@
-import type { LoaderArgs } from "@remix-run/node";
+import { ActionArgs, LoaderArgs, redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Form, Link, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
-import { getNotesFullRepresentation } from "~/models/note.server";
+import { getBoard, deleteBoard } from "~/models/board.server";
 
 export async function loader({ request, params }: LoaderArgs) {
   invariant(params.boardId, "boardId not found");
 
-  const noteListItems = await getNotesFullRepresentation();
+  const board = await getBoard({ id: params.boardId });
+  if (!board) {
+    throw new Response("Not Found", { status: 404});
+  }
+
   const qrCodeUrl = getQrCodeUrl(params.boardId);
 
-  return json({ noteListItems, qrCodeUrl });
+  return json({ board, qrCodeUrl });
 }
 
 function getQrCodeUrl(id: string): string {
   const size = 100;
   const baseUrl = "https://message-in-a-bottle.fly.dev";
-  const noteUrl = `${baseUrl}/notes/${id}`;
+  const url = `${baseUrl}/boards/${id}`;
 
-  return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${noteUrl}`;
+  return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${url}`;
 }
 
-export default function BoardPage() {
+export async function action({ request, params }: ActionArgs) {
+  invariant(params.boardId, "boardId not found");
+
+  await deleteBoard({ id: params.boardId });
+
+  return redirect("/boards");
+}
+
+export default function BoardDetailsPage() {
   const data = useLoaderData<typeof loader>();
 
   return (
-    <div className="flex h-full min-h-screen flex-col">
-      <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
-        <h1 className="text-3xl font-bold">
-          <Link to=".">Notes</Link>
-        </h1>
-        <img src={`${data.qrCodeUrl}`}></img>
-      </header>
-
-      <main className="flex mx-auto h-full bg-white">
-        <div className="bg-gray-20">
-          {data.noteListItems.length === 0 ? (
-            <p className="p-4">No notes yet</p>
-          ) : (
-            <div className="grid grid-cols-4 gap-10">{
-              data.noteListItems.map((note) => (
-                <div key={note.id} className="flex relative">
-                  <div className={`relative bottom-${note.ypos} left-${note.xpos} box-border h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50`}>
-                    <p className="py-2">{note.title}</p>
-                    <br></br>
-                    <p className="py-2">{note.body}</p>
-                  </div>
-                </div>
-              ))
-            }</div>
-          )}
+    <div>
+      <div className="flex relative">
+        <div className={`relative box-border h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50`}>
+          <p className="py-2">{data.board.title}</p>
         </div>
-      </main>
+      </div>
+      <br></br>
+      <h3 className="text-2xl font-bold">Debug</h3>
+      <h3 className="py-2">{"title: " + data.board.title}</h3>
+      <hr className="my-4" />
+      <Form method="post">
+        <button
+          type="submit"
+          className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+        >
+          Delete
+        </button>
+      </Form>
     </div>
   );
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error);
+
+  return <div>An unexpected error occurred: {error.message}</div>;
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  if (caught.status === 404) {
+    return <div>board not found</div>;
+  }
+
+  throw new Error(`Unexpected caught response with status: ${caught.status}`);
 }

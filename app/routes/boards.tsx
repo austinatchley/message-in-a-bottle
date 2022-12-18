@@ -4,8 +4,8 @@ import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 import { getBoards } from "../models/board.server";
 
 export async function loader({ request }: LoaderArgs) {
-  const boardListItems = await getBoards();
-  return json({ boardListItems });
+  const boardItems = await getBoards();
+  return json({ boardItems: boardItems });
 }
 
 export default function Index() {
@@ -15,23 +15,23 @@ export default function Index() {
     <div className="flex h-full min-h-screen flex-col">
       <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
         <h1 className="text-3xl font-bold">
-          <Link to=".">Notes</Link>
+          <Link to=".">Boards</Link>
         </h1>
       </header>
 
       <main className="flex h-full bg-white">
         <div className="h-full w-80 border-r bg-gray-50">
           <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Note
+            + New Board
           </Link>
 
           <hr />
 
-          {data.boardListItems.length === 0 ? (
-            <p className="p-4">No notes yet</p>
+          {data.boardItems.length === 0 ? (
+            <p className="p-4">No boards yet</p>
           ) : (
             <ol>
-              {data.boardListItems.map((board) => (
+              {data.boardItems.map((board) => (
                 <li key={board.id}>
                   <NavLink
                     className={({ isActive }) =>
