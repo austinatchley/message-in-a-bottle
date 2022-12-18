@@ -17,4 +17,14 @@ model Note {
   ypos  Int @default(0)
 
   createdAt DateTime @default(now())
+
+  board     Board? @relation(fields: [boardId], references: [id])
+  boardId   String?
+}
+
+model Board {
+  id    String @id @default(cuid())
+
+  title String
+  notes Note[]
 }
