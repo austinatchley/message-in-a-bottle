@@ -6,7 +6,6 @@ import * as React from "react";
 import { createNote } from "~/models/note.server";
 
 export async function action({ request }: ActionArgs) {
-  console.log(request.body);
   const formData = await request.formData();
   const title = formData.get("title");
   const body = formData.get("body");
