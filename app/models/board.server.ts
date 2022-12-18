@@ -17,7 +17,7 @@ export function getBoards() {
 }
 
 export function getBoardsInBoard(
-  { id }: Pick<Board, "id">) {
+  { id, notes }: Pick<Board, "id" | "notes">) {
   return prisma.board.findFirst({
     select: { id: true, notes: true },
     where: { id },

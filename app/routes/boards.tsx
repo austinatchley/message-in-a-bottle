@@ -1,9 +1,10 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
+import { getBoards } from "../models/board.server";
 
 export async function loader({ request }: LoaderArgs) {
-  const boardListItems = {}; // await getBoards();
+  const boardListItems = await getBoards();
   return json({ boardListItems });
 }
 
