@@ -33,6 +33,7 @@ export default function NoteDetailsPage() {
       <div className="flex relative">
         <div className={`relative bottom-${data.note.ypos} left-${data.note.xpos} box-border h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50`}>
           <p className="py-2">{data.note.title}</p>
+          <p className="py-2">{data.note.boardId}</p>
           <br></br>
           <p className="py-2">{data.note.body}</p>
         </div>

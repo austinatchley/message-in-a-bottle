@@ -1,9 +1,15 @@
-import type { ActionArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import { Form, useActionData } from "@remix-run/react";
+import { ActionArgs, LoaderArgs, json, redirect } from "@remix-run/node";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import * as React from "react";
 
 import { createNote } from "~/models/note.server";
+
+export async function loader({ request, params }: LoaderArgs) {
+  const url = new URL(request.url);
+  const boardId = url.searchParams.get("boardId");
+
+  return json({ boardId });
+}
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
@@ -11,46 +17,60 @@ export async function action({ request }: ActionArgs) {
   const body = formData.get("body");
   const xpos = formData.get("xpos");
   const ypos = formData.get("ypos");
+  const boardId = formData.get("boardId");
 
   if (typeof title !== "string" || title.length === 0) {
     return json(
-      { errors: { title: "Title is required", body: null, xpos: 0, ypos: 0 } },
+      { errors: { title: "Title is required", body: null, xpos: 0, ypos: 0, boardId: null } },
       { status: 400 }
     );
   }
 
   if (typeof body !== "string" || body.length === 0) {
     return json(
-      { errors: { body: "Body is required", title: null, xpos: 0, ypos: 0 } },
+      { errors: { body: "Body is required", title: null, xpos: 0, ypos: 0, boardId: null } },
       { status: 400 }
     );
   }
 
   if (typeof xpos !== "string" || xpos.length === 0) {
     return json(
-      { errors: { body: "xpos is required", title: null, xpos: 0, ypos: 0 } },
+      { errors: { xpos: "xpos is required", title: null, body: null, ypos: 0, boardId: null } },
       { status: 400 }
     );
   }
 
   if (typeof ypos !== "string" || ypos.length === 0) {
     return json(
-      { errors: { body: "ypos is required", title: null, xpos: 0, ypos: 0 } },
+      { errors: { ypos: "ypos is required", title: null, xpos: 0, body: null, boardId: null } },
       { status: 400 }
     );
   }
 
-  const note = await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos) });
+  if (typeof boardId !== "string" || boardId.length === 0) {
+    return json(
+      { errors: { boardId: "Board ID is required", body: null, title: null, xpos: 0, ypos: 0 } },
+      { status: 400 }
+    );
+  }
+
+  const note = await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos), boardId: boardId });
 
   return redirect(`/notes/${note.id}`);
 }
 
 export default function NewNotePage() {
+  const data = useLoaderData<typeof loader>();
+  console.log("boardId");
+  console.log(data.boardId);
+
   const actionData = useActionData<typeof action>();
+
   const titleRef = React.useRef<HTMLInputElement>(null);
   const bodyRef = React.useRef<HTMLTextAreaElement>(null);
   const xposRef = React.useRef<HTMLTextAreaElement>(null);
   const yposRef = React.useRef<HTMLTextAreaElement>(null);
+  const boardIdRef = React.useRef<HTMLTextAreaElement>(null);
 
   React.useEffect(() => {
     if (actionData?.errors?.title) {
@@ -61,6 +81,8 @@ export default function NewNotePage() {
       xposRef.current?.focus();
     } else if (actionData?.errors?.ypos) {
       yposRef.current?.focus();
+    } else if (actionData?.errors?.boardId) {
+
     }
   }, [actionData]);
 
@@ -153,6 +175,28 @@ export default function NewNotePage() {
         {actionData?.errors?.ypos && (
           <div className="pt-1 text-red-700" id="ypos-error">
             {actionData.errors.ypos}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label className="flex w-full flex-col gap-1">
+          <span>Board ID: </span>
+          <textarea
+            ref={boardIdRef}
+            name="boardId"
+            value={data.boardId ?? ""}
+            rows={1}
+            className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
+            aria-invalid={actionData?.errors?.boardId ? true : undefined}
+            aria-errormessage={
+              actionData?.errors?.boardId ? "boardId-error" : undefined
+            }
+          />
+        </label>
+        {actionData?.errors?.boardId && (
+          <div className="pt-1 text-red-700" id="body-error">
+            {actionData.errors.boardId}
           </div>
         )}
       </div>

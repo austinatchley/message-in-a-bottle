@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { Form, Link, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
-import { getBoard, deleteBoard } from "~/models/board.server";
+import { getBoard, deleteBoard, getNotesInBoard } from "~/models/board.server";
 
 export async function loader({ request, params }: LoaderArgs) {
   invariant(params.boardId, "boardId not found");
@@ -13,9 +13,12 @@ export async function loader({ request, params }: LoaderArgs) {
     throw new Response("Not Found", { status: 404 });
   }
 
+  const notes = await getNotesInBoard({ id: params.boardId });
+  console.log(notes);
+
   const qrCodeUrl = getQrCodeUrl(params.boardId);
 
-  return json({ board, qrCodeUrl });
+  return json({ board, notes, qrCodeUrl });
 }
 
 function getQrCodeUrl(id: string): string {
@@ -39,6 +42,26 @@ export default function BoardDetailsPage() {
 
   return (
     <div>
+      <div className="grid">
+        {data.notes?.notes.map(note =>
+          <div className="box-border h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
+            <p className="py-2">Title: {note.title}</p>
+            <p className="py-2">Body: {note.body}</p>
+            <br></br>
+            <p className="py-2">Created at: {note.createdAt}</p>
+          </div>
+        )}
+      </div>
+      <div className="pt-8 pb-8">
+        <Link to={`/notes/new?boardId=${data.board.id}`} >
+          <button
+            className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+          >
+            Create a new note in this board
+          </button>
+        </Link>
+      </div>
+
       <h3 className="text-2xl font-bold">Debug</h3>
       <h3 className="py-2">{"title: " + data.board.title}</h3>
       <div className="pt-8 pb-8">
