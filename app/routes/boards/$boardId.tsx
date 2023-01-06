@@ -10,7 +10,7 @@ export async function loader({ request, params }: LoaderArgs) {
 
   const board = await getBoard({ id: params.boardId });
   if (!board) {
-    throw new Response("Not Found", { status: 404});
+    throw new Response("Not Found", { status: 404 });
   }
 
   const qrCodeUrl = getQrCodeUrl(params.boardId);
@@ -39,23 +39,25 @@ export default function BoardDetailsPage() {
 
   return (
     <div>
-      <div className="flex relative">
-        <div className={`relative box-border h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50`}>
-          <p className="py-2">{data.board.title}</p>
-        </div>
-      </div>
-      <br></br>
       <h3 className="text-2xl font-bold">Debug</h3>
       <h3 className="py-2">{"title: " + data.board.title}</h3>
-      <hr className="my-4" />
-      <Form method="post">
-        <button
-          type="submit"
-          className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
-          Delete
-        </button>
-      </Form>
+      <div className="pt-8 pb-8">
+        <h3 className="text-2xl font-bold">Generated QR Code</h3>
+        <img className="content-center" src={`${data.qrCodeUrl}`}></img>
+      </div>
+
+      <hr></hr>
+
+      <div className="pt-8">
+        <Form method="post">
+          <button
+            type="submit"
+            className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+          >
+            Delete
+          </button>
+        </Form>
+      </div>
     </div>
   );
 }
