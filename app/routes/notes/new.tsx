@@ -17,7 +17,12 @@ export async function action({ request }: ActionArgs) {
   const body = formData.get("body");
   const xpos = formData.get("xpos");
   const ypos = formData.get("ypos");
-  const boardId = formData.get("boardId");
+
+  const url = new URL(request.url);
+  const boardId = url.searchParams.get("boardId");
+  console.log(request);
+  console.log(request.url)
+  console.log(boardId);
 
   if (typeof title !== "string" || title.length === 0) {
     return json(
@@ -47,23 +52,13 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  if (typeof boardId !== "string" || boardId.length === 0) {
-    return json(
-      { errors: { boardId: "Board ID is required", body: null, title: null, xpos: 0, ypos: 0 } },
-      { status: 400 }
-    );
-  }
-
-  const note = await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos), boardId: boardId });
+  const note = await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos), boardId });
 
   return redirect(`/notes/${note.id}`);
 }
 
 export default function NewNotePage() {
   const data = useLoaderData<typeof loader>();
-  console.log("boardId");
-  console.log(data.boardId);
-
   const actionData = useActionData<typeof action>();
 
   const titleRef = React.useRef<HTMLInputElement>(null);
@@ -81,14 +76,13 @@ export default function NewNotePage() {
       xposRef.current?.focus();
     } else if (actionData?.errors?.ypos) {
       yposRef.current?.focus();
-    } else if (actionData?.errors?.boardId) {
-
     }
   }, [actionData]);
 
   return (
     <Form
       method="post"
+      reloadDocument
       style={{
         display: "flex",
         flexDirection: "column",
@@ -96,6 +90,17 @@ export default function NewNotePage() {
         width: "100%",
       }}
     >
+
+      <div>
+        <label className="flex w-full flex-col gap-1">
+          <span
+            ref={boardIdRef}
+            className="w-full flex-1 py-2 px-3 text-lg leading-6"
+          >Create note on Board: {data.boardId}</span>
+        </label>
+      </div>
+
+
       <div>
         <label className="flex w-full flex-col gap-1">
           <span>Title: </span>
@@ -175,28 +180,6 @@ export default function NewNotePage() {
         {actionData?.errors?.ypos && (
           <div className="pt-1 text-red-700" id="ypos-error">
             {actionData.errors.ypos}
-          </div>
-        )}
-      </div>
-
-      <div>
-        <label className="flex w-full flex-col gap-1">
-          <span>Board ID: </span>
-          <textarea
-            ref={boardIdRef}
-            name="boardId"
-            value={data.boardId ?? ""}
-            rows={1}
-            className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
-            aria-invalid={actionData?.errors?.boardId ? true : undefined}
-            aria-errormessage={
-              actionData?.errors?.boardId ? "boardId-error" : undefined
-            }
-          />
-        </label>
-        {actionData?.errors?.boardId && (
-          <div className="pt-1 text-red-700" id="body-error">
-            {actionData.errors.boardId}
           </div>
         )}
       </div>
