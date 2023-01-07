@@ -17,6 +17,13 @@ export default function Index() {
         <h1 className="text-3xl font-bold">
           <Link to=".">Boards</Link>
         </h1>
+
+        <div className="bg-emerald-500 w-20">
+          
+          <h1 className="text-2xl text-right font-mono underline-offset-8">
+            <Link to="/">Home</Link>
+          </h1>
+        </div>
       </header>
 
       <main className="flex h-full bg-white">
