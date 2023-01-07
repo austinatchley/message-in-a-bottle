@@ -16,7 +16,7 @@ export default function Index() {
                 {(
                   <Link
                     to="/boards"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-blue-700 shadow-sm hover:bg-blue-50 sm:px-8"
+                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium font-mono text-blue-700 shadow-sm hover:bg-blue-50 sm:px-8"
                   >
                     View All Boards
                   </Link>
@@ -26,7 +26,7 @@ export default function Index() {
                 {(
                   <Link
                     to="/notes"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-blue-700 shadow-sm hover:bg-blue-50 sm:px-8"
+                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium font-mono text-blue-700 shadow-sm hover:bg-blue-50 sm:px-8"
                   >
                     View All Notes
                   </Link>
