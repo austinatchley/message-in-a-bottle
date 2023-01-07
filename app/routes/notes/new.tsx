@@ -20,9 +20,6 @@ export async function action({ request }: ActionArgs) {
 
   const url = new URL(request.url);
   const boardId = url.searchParams.get("boardId");
-  console.log(request);
-  console.log(request.url)
-  console.log(boardId);
 
   if (typeof title !== "string" || title.length === 0) {
     return json(
