@@ -18,6 +18,12 @@ export default function NotesPage() {
         <h1 className="text-3xl font-bold">
           <Link to=".">Notes</Link>
         </h1>
+
+        <div className="bg-stone-500 w-20">
+          <h1 className="text-2xl text-stone-100 font-bold text-center font-mono underline-offset-8">
+            <Link to="/">Home</Link>
+          </h1>
+        </div>
       </header>
 
       <main className="flex h-full bg-white">
@@ -52,6 +58,6 @@ export default function NotesPage() {
           <Outlet />
         </div>
       </main>
-    </div>
+    </div >
   );
 }
