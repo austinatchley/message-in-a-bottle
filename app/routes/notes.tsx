@@ -26,9 +26,9 @@ export default function NotesPage() {
         </div>
       </header>
 
-      <main className="flex h-full bg-white">
-        <div className="h-full w-80 border-r bg-gray-50">
-          <Link to="new" className="block p-4 text-xl text-blue-500">
+      <main className="flex h-full bg-stone-100">
+        <div className="h-full w-80 border-r">
+          <Link to="new" className="block p-4 text-xl text-blue-600 bg-blue-200">
             + New Note
           </Link>
 
@@ -42,7 +42,7 @@ export default function NotesPage() {
                 <li key={note.id}>
                   <NavLink
                     className={({ isActive }) =>
-                      `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`
+                      `block border-b p-4 text-xl ${isActive ? "bg-indigo-200" : "bg-indigo-100"}`
                     }
                     to={note.id}
                   >
