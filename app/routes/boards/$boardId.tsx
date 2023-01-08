@@ -41,14 +41,19 @@ export default function BoardDetailsPage() {
 
   return (
     <div>
+      <div className="pb-4">
+        <div className="font-mono text-2xl">{data.board.title}</div>
+      </div>
+
+      <div className="font-mono text-xl grid place-items-center pb-4">Notes</div>
       <div className="grid grid-cols-3 gap-8">
         {data.notes?.notes.map(note =>
           <div className="box-border relative font-mono h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
             <p className="py-2 font-semibold">{note.title}</p>
             <p className="py-2 font-thin">{note.body}</p>
             <br></br>
-            <div className="absolute inset-x-0 bottom-4 left-1">
-              <p className="text-xs font-extralight">Created at: {note.createdAt}</p>
+            <div className="absolute inset-x-0 bottom-4 left-1 grid place-items-center">
+              <p className="text-xs font-extralight">{note.createdAt}</p>
             </div>
           </div>
         )}
@@ -63,11 +68,12 @@ export default function BoardDetailsPage() {
         </Link>
       </div>
 
-      <h3 className="text-2xl font-bold">Debug</h3>
-      <h3 className="py-2">{"title: " + data.board.title}</h3>
-      <div className="pt-8 pb-8">
-        <h3 className="text-2xl font-bold">Generated QR Code</h3>
-        <img className="content-center" src={`${data.qrCodeUrl}`}></img>
+      <hr></hr>
+
+      <h3 className="text-2xl py-4 font-bold">Debug</h3>
+      <div className="pt-8 pb-8 grid justify-start">
+        <h3 className="text-xl font-bold">Generated QR Code</h3>
+        <img className="justify-self-center py-4" src={data.qrCodeUrl}></img>
       </div>
 
       <hr></hr>
