@@ -41,7 +41,7 @@ export default function Index() {
                 <li key={board.id}>
                   <NavLink
                     className={({ isActive }) =>
-                      `block border-b p-4 text-xl ${isActive ? "bg-indigo-200" : "bg-indigo-100"}`
+                      `block border-b p-4 text-xl hover:bg-indigo-200 hover:border-blue-300 hover:border-r-4 ${isActive ? "bg-indigo-200" : "bg-indigo-100"}`
                     }
                     to={board.id}
                   >

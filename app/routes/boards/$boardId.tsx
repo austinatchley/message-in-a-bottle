@@ -45,19 +45,25 @@ export default function BoardDetailsPage() {
         <div className="font-mono text-2xl">{data.board.title}</div>
       </div>
 
-      <div className="font-mono text-xl grid place-items-center pb-4">Notes</div>
-      <div className="grid grid-cols-3 gap-8">
-        {data.notes?.notes.map(note =>
-          <div className="box-border relative font-mono h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
-            <p className="py-2 font-semibold">{note.title}</p>
-            <p className="py-2 font-thin">{note.body}</p>
-            <br></br>
-            <div className="absolute inset-x-0 bottom-4 left-1 grid place-items-center">
-              <p className="text-xs font-extralight">{note.createdAt}</p>
+      <div className="border-2 border-stone-800 rounded-md bg-slate-200">
+        <div className="items-center justify-center rounded-md bg-sky-200 px-4 py-3 text-base font-medium font-mono text-black">
+          <div className="font-mono text-xl grid place-items-center">Notes</div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-8 py-4 ml-4">
+          {data.notes?.notes.map(note =>
+            <div className="box-border relative font-mono h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
+              <p className="py-2 font-semibold">{note.title}</p>
+              <p className="py-2 font-thin">{note.body}</p>
+              <br></br>
+              <div className="absolute inset-x-0 bottom-4 left-1 grid place-items-center">
+                <p className="text-xs font-extralight">{note.createdAt}</p>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
+
       <div className="pt-8 pb-8">
         <Link to={`/notes/new?boardId=${data.board.id}`} >
           <button
