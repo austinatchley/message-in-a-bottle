@@ -28,12 +28,6 @@ export default function NotesPage() {
 
       <main className="flex h-full bg-stone-100">
         <div className="h-full w-80 border-r">
-          <Link to="new" className="block p-4 text-xl text-blue-600 bg-blue-200">
-            + New Note
-          </Link>
-
-          <hr />
-
           {data.noteListItems.length === 0 ? (
             <p className="p-4">No notes yet</p>
           ) : (

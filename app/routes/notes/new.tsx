@@ -1,5 +1,5 @@
 import { ActionArgs, LoaderArgs, json, redirect } from "@remix-run/node";
-import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import { Form, useActionData, useCatch, useLoaderData } from "@remix-run/react";
 import * as React from "react";
 
 import { createNote } from "~/models/note.server";
@@ -7,6 +7,10 @@ import { createNote } from "~/models/note.server";
 export async function loader({ request, params }: LoaderArgs) {
   const url = new URL(request.url);
   const boardId = url.searchParams.get("boardId");
+
+  if (!boardId) {
+    throw new Response("Malformed input. Board ID is null", { status: 400 });
+  }
 
   return json({ boardId });
 }
@@ -58,11 +62,12 @@ export default function NewNotePage() {
   const data = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
 
+  const boardIdRef = React.useRef<HTMLTextAreaElement>(null);
+
   const titleRef = React.useRef<HTMLInputElement>(null);
   const bodyRef = React.useRef<HTMLTextAreaElement>(null);
   const xposRef = React.useRef<HTMLTextAreaElement>(null);
   const yposRef = React.useRef<HTMLTextAreaElement>(null);
-  const boardIdRef = React.useRef<HTMLTextAreaElement>(null);
 
   React.useEffect(() => {
     if (actionData?.errors?.title) {
@@ -191,4 +196,20 @@ export default function NewNotePage() {
       </div>
     </Form>
   );
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error);
+
+  return <div>An unexpected error occurred.</div>;
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  if (caught.status === 404) {
+    return <div>Page not found</div>;
+  }
+
+  throw new Error(`Unexpected caught response with status: ${caught.status}`);
 }

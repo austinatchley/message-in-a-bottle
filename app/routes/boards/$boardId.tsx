@@ -52,7 +52,9 @@ export default function BoardDetailsPage() {
 
         <div className="grid grid-cols-3 gap-8 py-4 ml-4">
           {data.notes?.notes.map(note =>
-            <div className="box-border relative font-mono h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
+            <div 
+            key={note.id}
+            className="box-border relative font-mono h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
               <p className="py-2 font-semibold">{note.title}</p>
               <p className="py-2 font-thin">{note.body}</p>
               <br></br>
