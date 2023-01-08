@@ -41,13 +41,15 @@ export default function BoardDetailsPage() {
 
   return (
     <div>
-      <div className="grid">
+      <div className="grid grid-cols-3 gap-8">
         {data.notes?.notes.map(note =>
-          <div className="box-border h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
-            <p className="py-2">Title: {note.title}</p>
-            <p className="py-2">Body: {note.body}</p>
+          <div className="box-border relative font-mono h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
+            <p className="py-2 font-semibold">{note.title}</p>
+            <p className="py-2 font-thin">{note.body}</p>
             <br></br>
-            <p className="py-2">Created at: {note.createdAt}</p>
+            <div className="absolute inset-x-0 bottom-4 left-1">
+              <p className="text-xs font-extralight">Created at: {note.createdAt}</p>
+            </div>
           </div>
         )}
       </div>

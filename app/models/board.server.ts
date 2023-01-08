@@ -3,7 +3,6 @@ import type { Board } from "@prisma/client";
 
 export function getBoard(
   { id }: Pick<Board, "id">) {
-  console.log(id);
   return prisma.board.findFirst({
     select: { id: true, title: true, notes: true },
     where: { id },
