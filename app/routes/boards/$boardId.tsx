@@ -14,7 +14,6 @@ export async function loader({ request, params }: LoaderArgs) {
   }
 
   const notes = await getNotesInBoard({ id: params.boardId });
-  console.log(notes);
 
   const qrCodeUrl = getQrCodeUrl(params.boardId);
 
