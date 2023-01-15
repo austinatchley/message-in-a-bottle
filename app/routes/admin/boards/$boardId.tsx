@@ -33,7 +33,7 @@ export async function action({ request, params }: ActionArgs) {
 
   await deleteBoard({ id: params.boardId });
 
-  return redirect("/boards");
+  return redirect("/admin/boards");
 }
 
 export default function BoardDetailsPage() {
@@ -67,6 +67,49 @@ export default function BoardDetailsPage() {
       </div>
 
       <hr></hr>
+
+      <h3 className="text-2xl py-4 font-bold">Debug</h3>
+      <div className="pt-8 pb-8 grid justify-start">
+        <h3 className="text-xl font-bold">Generated QR Code</h3>
+        <img className="justify-self-center py-4" src={data.qrCodeUrl}></img>
+      </div>
+
+      <hr></hr>
+
+      <h3 className="text-xl py-4 font-bold">Admin Functionality</h3>
+
+      <div className="flex flex-row">
+        <div className="p-4">
+          <Link to={`/admin/notes/new?boardId=${data.board.id}`} >
+            <button
+              className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+            >
+              Create a new note in this board
+            </button>
+          </Link>
+        </div>
+
+        <div className="p-4">
+          <Form method="post">
+            <button
+              type="submit"
+              className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+            >
+              Delete
+            </button>
+          </Form>
+        </div>
+
+        <div className="p-4">
+          <Link to={`/boards/${data.board.id}`} >
+            <button
+              className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+            >
+              View this board's page
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

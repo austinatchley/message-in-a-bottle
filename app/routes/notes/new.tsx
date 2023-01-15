@@ -55,7 +55,7 @@ export async function action({ request }: ActionArgs) {
 
   const note = await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos), boardId });
 
-  return redirect(`/admin/boards/${boardId}`);
+  return redirect(`/boards/${boardId}`);
 }
 
 export default function NewNotePage() {

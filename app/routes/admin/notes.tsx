@@ -19,9 +19,9 @@ export default function NotesPage() {
           <Link to=".">Notes</Link>
         </h1>
 
-        <div className="bg-stone-500 w-20">
-          <h1 className="text-2xl text-stone-100 font-bold text-center font-mono underline-offset-8">
-            <Link to="/">Home</Link>
+        <div className="bg-stone-500 min-w-20">
+          <h1 className="text-2xl px-2 text-stone-100 font-bold text-center font-mono underline-offset-8">
+            <Link to="/admin">Admin Portal</Link>
           </h1>
         </div>
       </header>

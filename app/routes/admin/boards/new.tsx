@@ -18,7 +18,7 @@ export async function action({ request }: ActionArgs) {
 
   const board = await createBoard({ title });
 
-  return redirect(`/boards/${board.id}`);
+  return redirect(`/admin/boards/${board.id}`);
 }
 
 export default function NewBoardPage() {

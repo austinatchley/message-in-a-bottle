@@ -22,7 +22,7 @@ export async function action({ request, params }: ActionArgs) {
 
   await deleteNote({ id: params.noteId });
 
-  return redirect("/notes");
+  return redirect("/admin/notes");
 }
 
 export default function NoteDetailsPage() {
@@ -38,21 +38,28 @@ export default function NoteDetailsPage() {
           <p className="py-2">{data.note.body}</p>
         </div>
       </div>
-      <br></br>
+      <hr className="my-4"></hr>
       <h3 className="text-2xl font-bold">Debug</h3>
       <h3 className="py-2">{"title: " + data.note.title}</h3>
       <p className="py-2">{"body: " + data.note.body}</p>
       <p className="py-2">{"xpos: " + data.note.xpos}</p>
       <p className="py-2">{"ypos: " + data.note.ypos}</p>
+
       <hr className="my-4" />
-      <Form method="post">
-        <button
-          type="submit"
-          className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
-          Delete
-        </button>
-      </Form>
+      <h3 className="text-xl py-4 font-bold">Admin Functionality</h3>
+
+      <div className="flex flex-row">
+        <div className="p-4">
+          <Form method="post">
+            <button
+              type="submit"
+              className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+            >
+              Delete
+            </button>
+          </Form>
+        </div>
+      </div>
     </div>
   );
 }
