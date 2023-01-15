@@ -53,7 +53,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  const note = await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos), boardId });
+  await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos), boardId });
 
   return redirect(`/admin/boards/${boardId}`);
 }
