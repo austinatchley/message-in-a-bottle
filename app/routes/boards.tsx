@@ -25,7 +25,7 @@ export default function Index() {
         </h1>
 
         <div className="bg-stone-500 hover:bg-sky-800 w-20">
-          <h1 className="text-2xl text-stone-100 font-bold text-center font-mono">
+          <h1 className="text-2xl px-2 text-stone-100 font-bold text-center font-mono">
             <button onClick={handleMenuButtonClick}>Menu</button>
             {menuOpen ? (
               <ul className="menu absolute right-4 w-60 z-50 bg-slate-300 text-slate-800 font-thin text-lg divide-y divide-slate-900">
