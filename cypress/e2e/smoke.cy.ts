@@ -22,6 +22,7 @@ describe("smoke tests", () => {
   it("should allow you to view boards", () => {
     cy.visitAndCheck("/");
 
+    cy.findByRole("link", { name: /Admin/i }).click();
     cy.findByRole("link", { name: /boards/i }).click();
     cy.findByText("No boards yet");
   });
@@ -69,6 +70,7 @@ describe("smoke tests", () => {
     cy.findByText("No boards yet");
 
     cy.visitAndCheck("/");
+    cy.findByRole("link", { name: /Admin/i }).click();
     cy.findByRole("link", { name: /notes/i }).click();
     cy.contains(testNote.title).click();
 
