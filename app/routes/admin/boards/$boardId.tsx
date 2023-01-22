@@ -80,7 +80,7 @@ export default function BoardDetailsPage() {
 
       <div className="flex flex-row">
         <div className="p-4">
-          <Link to={`/admin/notes/new?boardId=${data.board.id}`} >
+          <Link to={`/notes/new?boardId=${data.board.id}`} >
             <button
               className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             >
