@@ -11,8 +11,13 @@ import {
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 
+const googleFontsImportUrl: string = "https://fonts.googleapis.com/css2?family=Chonburi&family=JetBrains+Mono&family=Prompt&family=Unbounded&family=VT323&display=swap";
+
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
+  return [
+    { rel: "stylesheet", href: tailwindStylesheetUrl },
+    { rel: "stylesheet", href: googleFontsImportUrl }
+  ];
 };
 
 export const meta: MetaFunction = () => ({

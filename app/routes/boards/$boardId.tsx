@@ -42,19 +42,19 @@ export default function BoardDetailsPage() {
   return (
     <div>
       <div className="pb-4">
-        <div className="font-mono text-2xl">{data.board.title}</div>
+        <div className="text-2xl">{data.board.title}</div>
       </div>
 
       <div className="border-2 border-stone-800 rounded-md bg-slate-200">
-        <div className="items-center justify-center rounded-md bg-sky-200 px-4 py-3 text-base font-medium font-mono text-black">
-          <div className="font-mono text-xl grid place-items-center">Notes</div>
+        <div className="items-center justify-center rounded-md bg-sky-200 px-4 py-3 text-base font-medium text-black">
+          <div className="text-xl grid place-items-center">Notes</div>
         </div>
 
         <div className="grid grid-cols-3 gap-8 py-4 ml-4">
           {data.notes?.notes.map(note =>
             <div
               key={note.id}
-              className="box-border relative font-mono h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
+              className="box-border relative h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
               <p className="py-2 font-semibold">{note.title}</p>
               <p className="py-2 font-thin">{note.body}</p>
               <br></br>

@@ -7,8 +7,8 @@ export default function Index() {
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="relative sm:overflow-hidden sm:rounded-2xl">
             <div className="relative bg-yellow-500 px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pb-20 lg:pt-32">
-              <h1 className="text-center font-mono text-2xl tracking-tight sm:text-2xl lg:text-3xl">
-                <div className="block text-slate-700 pb-8">
+              <h1 className="text-center font-body text-2xl tracking-tight sm:text-2xl lg:text-3xl">
+                <div className="block text-slate-700 pb-8 font-title font-bold">
                   Admin Portal
                 </div>
               </h1>
@@ -16,7 +16,7 @@ export default function Index() {
                 {(
                   <Link
                     to="/admin/boards"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium font-mono hover:bg-blue-50 sm:px-8"
+                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium hover:bg-blue-50 sm:px-8"
                   >
                     View All Boards
                   </Link>
@@ -26,7 +26,7 @@ export default function Index() {
                 {(
                   <Link
                     to="/admin/notes"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium font-mono hover:bg-blue-50 sm:px-8"
+                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium hover:bg-blue-50 sm:px-8"
                   >
                     View All Notes
                   </Link>
@@ -41,7 +41,7 @@ export default function Index() {
                 {(
                   <Link
                     to="/"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium font-mono hover:bg-blue-50 sm:px-8"
+                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium hover:bg-blue-50 sm:px-8"
                   >
                     Home
                   </Link>
