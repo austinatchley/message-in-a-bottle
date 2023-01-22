@@ -3,10 +3,12 @@ module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
   theme: {
     fontFamily: {
-      "sans": ["Prompt"],
+      "sans": ["Prompt"], // default
       "serif": ["ui-serif", "Georgia"],
       "mono": ["ui-monospace", "SFMono-Regular"],
-      "title": ["Unbounded"]
+      "title": ["Unbounded"],
+      "accent": ["VT323"],
+      "code": ["'JetBrains Mono'"]
     },
     extend: {},
   },
