@@ -2,7 +2,7 @@ import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 import { getBoards } from "../../models/board.server";
-import AdminPortalToolbar from "~/shared/components/admin-portal-toolbar";
+import AdminPortalToolbar from "~/components/admin-portal-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
   const boardItems = await getBoards();

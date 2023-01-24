@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 import React from "react";
 import { getBoards } from "../models/board.server";
-import Toolbar from "~/shared/components/toolbar";
+import MenuToolbar from "~/components/menu-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
   const boardItems = await getBoards();
@@ -20,7 +20,7 @@ export default function Index() {
 
   return (
     <div className="flex h-full min-h-screen flex-col">
-      <Toolbar />
+      <MenuToolbar />
 
       <main className="flex h-full bg-stone-100">
         <div className="flex-1 p-6">

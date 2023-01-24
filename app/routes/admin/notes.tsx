@@ -4,7 +4,7 @@ import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
 import { getNotes } from "~/models/note.server";
 
-import AdminPortalToolbar from "~/shared/components/admin-portal-toolbar";
+import AdminPortalToolbar from "~/components/admin-portal-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
   const noteListItems = await getNotes();
