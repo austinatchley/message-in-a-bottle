@@ -4,6 +4,8 @@ import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
 import { getNotes } from "~/models/note.server";
 
+import AdminPortalToolbar from "~/shared/components/admin-portal-toolbar";
+
 export async function loader({ request }: LoaderArgs) {
   const noteListItems = await getNotes();
   return json({ noteListItems });
@@ -14,17 +16,7 @@ export default function NotesPage() {
 
   return (
     <div className="flex h-full min-h-screen flex-col">
-      <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
-        <h1 className="text-3xl font-bold font-title">
-          <Link to=".">Notes</Link>
-        </h1>
-
-        <div className="bg-slate-500 hover:bg-sky-800 min-w-20">
-          <h1 className="text-2xl px-2 text-stone-100 font-medium text-center underline-offset-8">
-            <Link to="/admin">Admin Portal</Link>
-          </h1>
-        </div>
-      </header>
+      <AdminPortalToolbar />
 
       <main className="flex h-full bg-stone-100">
         <div className="h-full w-80 border-r">
