@@ -12,11 +12,6 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function Index() {
   const data = useLoaderData<typeof loader>();
-  const [menuOpen, setMenuOpen] = React.useState(false);
-
-  function handleMenuButtonClick() {
-    setMenuOpen(!menuOpen);
-  }
 
   return (
     <div className="flex h-full min-h-screen flex-col">
