@@ -10,7 +10,11 @@ module.exports = {
       "accent": ["VT323"],
       "code": ["'JetBrains Mono'"]
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "landing-page-background": "url('/landing-background.png')"
+      }
+    },
   },
   plugins: [],
 };
