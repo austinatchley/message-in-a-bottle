@@ -3,9 +3,7 @@ import { faker } from "@faker-js/faker";
 describe("smoke tests", () => {
   const testNote = {
     title: faker.lorem.words(1),
-    body: faker.lorem.sentences(1),
-    xpos: 0,
-    ypos: 0 
+    body: faker.lorem.sentences(1)
   };
 
   const testBoard = {
@@ -60,8 +58,6 @@ describe("smoke tests", () => {
 
     cy.findByRole("textbox", { name: /title/i }).type(testNote.title);
     cy.findByRole("textbox", { name: /body/i }).type(testNote.body);
-    cy.findByRole("textbox", { name: /xpos/i }).type("" + testNote.xpos);
-    cy.findByRole("textbox", { name: /ypos/i }).type("" + testNote.ypos);
     cy.findByRole("button", { name: /save/i }).click();
 
     cy.findAllByText(testNote.title);
