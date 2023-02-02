@@ -19,8 +19,9 @@ export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
   const title = formData.get("title");
   const body = formData.get("body");
-  const xpos = formData.get("xpos");
-  const ypos = formData.get("ypos");
+
+  const xpos = 0; // TODO: Add functionality for gathering this data from click location
+  const ypos = 0;
 
   const url = new URL(request.url);
   const boardId = url.searchParams.get("boardId");
@@ -39,14 +40,14 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  if (typeof xpos !== "string" || xpos.length === 0) {
+  if (typeof xpos !== "number") {
     return json(
       { errors: { xpos: "xpos is required", title: null, body: null, ypos: 0, boardId: null } },
       { status: 400 }
     );
   }
 
-  if (typeof ypos !== "string" || ypos.length === 0) {
+  if (typeof ypos !== "number") {
     return json(
       { errors: { ypos: "ypos is required", title: null, xpos: 0, body: null, boardId: null } },
       { status: 400 }
@@ -66,18 +67,12 @@ export default function NewNotePage() {
 
   const titleRef = React.useRef<HTMLInputElement>(null);
   const bodyRef = React.useRef<HTMLTextAreaElement>(null);
-  const xposRef = React.useRef<HTMLTextAreaElement>(null);
-  const yposRef = React.useRef<HTMLTextAreaElement>(null);
 
   React.useEffect(() => {
     if (actionData?.errors?.title) {
       titleRef.current?.focus();
     } else if (actionData?.errors?.body) {
       bodyRef.current?.focus();
-    } else if (actionData?.errors?.xpos) {
-      xposRef.current?.focus();
-    } else if (actionData?.errors?.ypos) {
-      yposRef.current?.focus();
     }
   }, [actionData]);
 
@@ -140,48 +135,6 @@ export default function NewNotePage() {
         {actionData?.errors?.body && (
           <div className="pt-1 text-red-700" id="body-error">
             {actionData.errors.body}
-          </div>
-        )}
-      </div>
-
-      <div>
-        <label className="flex w-full flex-col gap-1">
-          <span>xpos: </span>
-          <textarea
-            ref={xposRef}
-            name="xpos"
-            rows={1}
-            className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
-            aria-invalid={actionData?.errors?.xpos ? true : undefined}
-            aria-errormessage={
-              actionData?.errors?.xpos ? "xpos-error" : undefined
-            }
-          />
-        </label>
-        {actionData?.errors?.xpos && (
-          <div className="pt-1 text-red-700" id="xpos-error">
-            {actionData.errors.xpos}
-          </div>
-        )}
-      </div>
-
-      <div>
-        <label className="flex w-full flex-col gap-1">
-          <span>ypos: </span>
-          <textarea
-            ref={yposRef}
-            name="ypos"
-            rows={1}
-            className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
-            aria-invalid={actionData?.errors?.ypos ? true : undefined}
-            aria-errormessage={
-              actionData?.errors?.ypos ? "ypos-error" : undefined
-            }
-          />
-        </label>
-        {actionData?.errors?.ypos && (
-          <div className="pt-1 text-red-700" id="ypos-error">
-            {actionData.errors.ypos}
           </div>
         )}
       </div>
