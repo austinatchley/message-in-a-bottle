@@ -7,6 +7,11 @@ interface NoteProps {
     createdAt: string;
 }
 
+function formatDate(date: string): string {
+    const yearMonthDateEnd = date.indexOf("T");
+    return date.substring(0, yearMonthDateEnd);
+}
+
 export default function Note({ id, title, body, createdAt }: NoteProps) {
     return (
         <div
@@ -16,7 +21,7 @@ export default function Note({ id, title, body, createdAt }: NoteProps) {
             <p className="py-2 font-thin">{body}</p>
             <br></br>
             <div className="absolute inset-x-0 bottom-4 left-1 grid place-items-center">
-                <p className="text-xs font-extralight">{createdAt}</p>
+                <p className="text-xs font-extralight">{formatDate(createdAt)}</p>
             </div>
         </div>
     );

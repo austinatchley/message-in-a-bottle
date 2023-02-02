@@ -4,7 +4,7 @@ import { Link } from "@remix-run/react";
 export const meta: MetaFunction = () => ({
   title: "Message in a Bottle",
   description:
-    "Anonymous Remix chat app",
+    "Anonymous chat app",
 });
 
 export default function Index() {
