@@ -11,7 +11,7 @@ export async function action({ request }: ActionArgs) {
 
   if (typeof title !== "string" || title.length === 0) {
     return json(
-      { errors: { title: "Title is required", body: null, xpos: 0, ypos: 0 } },
+      { errors: { title: "Title is required", body: null } },
       { status: 400 }
     );
   }

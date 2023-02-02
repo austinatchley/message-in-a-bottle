@@ -42,6 +42,7 @@
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
+    "date-fns": "^2.29.3",
     "express": "^4.18.2",
     "express-prometheus-middleware": "^1.2.0",
     "isbot": "^3.6.3",

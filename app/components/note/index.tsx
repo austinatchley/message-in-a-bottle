@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { parseISO } from "date-fns";
 
 interface NoteProps {
     id: string;
@@ -8,8 +8,13 @@ interface NoteProps {
 }
 
 function formatDate(date: string): string {
-    const yearMonthDateEnd = date.indexOf("T");
-    return date.substring(0, yearMonthDateEnd);
+    try {
+        const parsedDate: Date = parseISO(date);
+        return parsedDate.toLocaleString();
+    } catch (e: unknown) {
+        console.error(e);
+        return date;
+    }
 }
 
 export default function Note({ id, title, body, createdAt }: NoteProps) {
