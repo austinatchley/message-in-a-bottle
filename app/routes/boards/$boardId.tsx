@@ -40,9 +40,9 @@ export default function BoardDetailsPage() {
   const data = useLoaderData<typeof loader>();
 
   return (
-    <div>
+    <div className="min-h-full">
       <div className="pb-4">
-        <div className="text-2xl">{data.board.title}</div>
+        <h1 className="text-2xl text-bold font-title">{data.board.title}</h1>
       </div>
 
       <div className="border-2 border-stone-800 rounded-md bg-slate-200">
@@ -51,7 +51,7 @@ export default function BoardDetailsPage() {
         </div>
 
         <div className="grid grid-cols-3 gap-8 py-4 ml-4">
-          {data.notes?.notes.map(note =>
+          {data.notes?.notes.map(note => // TODO: Turn this into a component
             <div
               key={note.id}
               className="box-border relative h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
@@ -68,7 +68,7 @@ export default function BoardDetailsPage() {
 
       <hr></hr>
 
-      <div className="p-4">
+      <div className="pl-4 py-10">
           <Link to={`/notes/new?boardId=${data.board.id}`} >
             <button
               className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
