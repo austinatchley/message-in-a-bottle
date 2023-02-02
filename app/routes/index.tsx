@@ -9,7 +9,7 @@ export const meta: MetaFunction = () => ({
 
 export default function Index() {
   return (
-    <main className="min-h-screen bg-landing-page-background 100 sm:flex sm:items-center sm:justify-center">
+    <main className="min-h-screen bg-landing-page-background bg-repeat-x bg-slate-800 sm:flex sm:items-center sm:justify-center">
       <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <div className="flex flex-col basis-1/2 w-full md:w-2/5 justify-center items-start text-center md:text-left md:j-96 lg:h-112 xl:h-136">
           <div className="ml-2 bg-zinc-800">
