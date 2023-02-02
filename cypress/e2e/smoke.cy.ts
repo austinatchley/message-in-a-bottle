@@ -16,25 +16,22 @@ describe("smoke tests", () => {
   afterEach(() => { });
 
   it("should allow you to view notes", () => {
-    cy.visitAndCheck("/");
+    cy.visitAndCheck("/admin");
 
-    cy.findByRole("link", { name: /Admin/i }).click();
     cy.findByRole("link", { name: /notes/i }).click();
     cy.findByText(/No note selected/); // substring match
   });
 
   it("should allow you to view boards", () => {
-    cy.visitAndCheck("/");
+    cy.visitAndCheck("/admin");
 
-    cy.findByRole("link", { name: /Admin/i }).click();
     cy.findByRole("link", { name: /boards/i }).click();
     cy.findByText(/No board selected/);
   });
 
   it("should allow you to create a board", () => {
-    cy.visitAndCheck("/");
+    cy.visitAndCheck("/admin");
 
-    cy.findByRole("link", { name: /Admin/i }).click();
     cy.findByRole("link", { name: /boards/i }).click();
     cy.findByText(/No board selected/);
 
@@ -49,9 +46,8 @@ describe("smoke tests", () => {
   });
 
   it("should allow you to create a board and a note", () => {
-    cy.visitAndCheck("/");
+    cy.visitAndCheck("/admin");
 
-    cy.findByRole("link", { name: /Admin/i }).click();
     cy.findByRole("link", { name: /boards/i }).click();
     cy.findByText(/No board selected/);
 
@@ -70,8 +66,7 @@ describe("smoke tests", () => {
 
     cy.findAllByText(testNote.title);
 
-    cy.findByRole("link", { name: /Menu/i }).click();
-    cy.findByRole("link", { name: /Admin/i }).click();
+    cy.visitAndCheck("/admin");
     cy.findByRole("link", { name: /boards/i }).click();
 
     cy.findByText(testBoard.title, { exact: false }).click();
@@ -79,8 +74,7 @@ describe("smoke tests", () => {
 
     cy.findByText(/No board selected/);
 
-    cy.visitAndCheck("/");
-    cy.findByRole("link", { name: /Admin/i }).click();
+    cy.visitAndCheck("/admin");
     cy.findByRole("link", { name: /notes/i }).click();
     cy.contains(testNote.title).click();
 
