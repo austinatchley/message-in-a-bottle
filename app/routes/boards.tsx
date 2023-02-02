@@ -15,7 +15,9 @@ export default function Index() {
 
   return (
     <div className="flex h-full min-h-screen flex-col">
-      <MenuToolbar />
+      <header>
+        <MenuToolbar />
+      </header>
 
       <main className="flex h-full bg-stone-100">
         <div className="flex-1 p-6">

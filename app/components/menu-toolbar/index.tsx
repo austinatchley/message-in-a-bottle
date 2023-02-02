@@ -1,4 +1,3 @@
-import { Link } from "@remix-run/react";
 import GenericToolbar from "~/components/generic-toolbar";
 
 export default function MenuToolbar() {

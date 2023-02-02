@@ -2,6 +2,7 @@ import { ActionArgs, LoaderArgs, redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
+import Note from "~/components/note";
 
 import { getBoard, deleteBoard, getNotesInBoard } from "~/models/board.server";
 
@@ -51,17 +52,13 @@ export default function BoardDetailsPage() {
         </div>
 
         <div className="grid grid-cols-3 gap-8 py-4 ml-4">
-          {data.notes?.notes.map(note => // TODO: Turn this into a component
-            <div
-              key={note.id}
-              className="box-border relative h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">
-              <p className="py-2 font-semibold">{note.title}</p>
-              <p className="py-2 font-thin">{note.body}</p>
-              <br></br>
-              <div className="absolute inset-x-0 bottom-4 left-1 grid place-items-center">
-                <p className="text-xs font-extralight">{note.createdAt}</p>
-              </div>
-            </div>
+          {data.notes?.notes.map(note =>
+            <Note
+              id={note.id}
+              title={note.title}
+              body={note.body}
+              createdAt={note.createdAt}
+            />
           )}
         </div>
       </div>
@@ -69,14 +66,14 @@ export default function BoardDetailsPage() {
       <hr></hr>
 
       <div className="pl-4 py-10">
-          <Link to={`/notes/new?boardId=${data.board.id}`} >
-            <button
-              className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-            >
-              Create a new note in this board
-            </button>
-          </Link>
-        </div>
+        <Link to={`/notes/new?boardId=${data.board.id}`} >
+          <button
+            className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+          >
+            Create a new note in this board
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

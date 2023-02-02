@@ -14,7 +14,9 @@ export default function Index() {
 
   return (
     <div className="flex h-full min-h-screen flex-col">
-      <AdminPortalToolbar />
+      <header>
+        <AdminPortalToolbar />
+      </header>
 
       <main className="flex h-full bg-stone-100">
         <div className="h-full w-80 border-r">

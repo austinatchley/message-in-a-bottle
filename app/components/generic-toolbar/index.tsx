@@ -1,15 +1,15 @@
 import { Link } from "@remix-run/react";
 
-interface IProps {
+interface GenericToolbarProps {
     titleMessage: string;
     titleLinkUrl: string;
     menuMessage: string;
     menuLinkUrl: string;
 }
 
-export default function GenericToolbar({ titleMessage, titleLinkUrl, menuMessage, menuLinkUrl }: IProps) {
+export default function GenericToolbar({ titleMessage, titleLinkUrl, menuMessage, menuLinkUrl }: GenericToolbarProps) {
     return (
-        <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
+        <div className="flex items-center justify-between bg-slate-800 p-4 text-white">
             <h1 className="flex items-center h-8 w-48 text-3xl font-bold font-title">
                 <Link to={titleLinkUrl}>{titleMessage}</Link>
             </h1>
@@ -19,6 +19,6 @@ export default function GenericToolbar({ titleMessage, titleLinkUrl, menuMessage
                     <Link to={menuLinkUrl}>{menuMessage}</Link>
                 </h1>
             </div>
-        </header>
+        </div>
     );
 }
