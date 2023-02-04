@@ -53,13 +53,15 @@ export default function BoardDetailsPage() {
 
         <div className="grid grid-cols-3 gap-8 py-4 ml-4">
           {data.notes?.notes.map(note =>
-            <Note
-              key={note.id}
-              id={note.id}
-              title={note.title}
-              body={note.body}
-              createdAt={note.createdAt}
-            />
+            <div className="">
+              <Note
+                key={note.id}
+                id={note.id}
+                title={note.title}
+                body={note.body}
+                createdAt={note.createdAt}
+              />
+            </div>
           )}
         </div>
       </div>

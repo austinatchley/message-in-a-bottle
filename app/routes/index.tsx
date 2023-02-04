@@ -26,11 +26,11 @@ export default function Index() {
                 </div>
               </div>
               <div className="rounded text-yellow-500 font-title text-6xl">
-                <div className="flex flex-col justify-left pl-4 pr-40 pt-4 pb-64">
-                  <div>message</div>
-                  <div>in</div>
-                  <div>a</div>
-                  <div>bottle</div>
+                <div className="flex flex-col space-y-4 text-right hover:text-yellow-400 pl-4 pr-40 pt-4 pb-32">
+                  <div className="min-w-full">message</div>
+                  <div className="min-w-full">in</div>
+                  <div className="min-w-full">a</div>
+                  <div className="min-w-full">bottle</div>
                 </div>
               </div>
             </h1>
@@ -45,7 +45,7 @@ export default function Index() {
             {(
               <Link
                 to="/boards"
-                className="flex items-center justify-center rounded-md border bg-gradient-to-bl from-yellow-300 to-orange-300 py-3 text-title font-medium shadow-sm hover:bg-blue-100 sm:px-8"
+                className="flex items-center justify-center rounded-md border hover:shadow-inner bg-gradient-to-bl from-yellow-300 to-orange-300 py-3 text-title font-medium shadow-sm hover:bg-blue-100 sm:px-8"
               >
                 Enter
               </Link>
