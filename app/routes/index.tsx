@@ -37,7 +37,7 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="w-full md:w-3/5 py-6 flex flex-col items-center md:min-h-full">
+        <div className="mx-auto w-3/5 py-6 flex flex-col items-center md:min-h-full">
           <div className="mt-20 w-1/4 text-slate-800 sm:flex sm:max-w-none sm:justify-center pb-8">
             <Link
               to="/boards"

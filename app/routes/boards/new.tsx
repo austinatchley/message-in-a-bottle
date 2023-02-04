@@ -47,7 +47,7 @@ export default function NewBoardPage() {
           <input
             ref={titleRef}
             name="title"
-            className="rounded-md border-2 border-slate-500 focus:border-blue-500 mt-4 px-3 text-lg leading-loose"
+            className="mx-auto w-1/4 text-center rounded-md border-2 border-slate-500 focus:border-blue-500 mt-4 px-3 text-lg leading-loose"
             aria-invalid={actionData?.errors?.title ? true : undefined}
             aria-errormessage={
               actionData?.errors?.title ? "title-error" : undefined
@@ -61,10 +61,10 @@ export default function NewBoardPage() {
         )}
       </div>
 
-      <div className="flex w-full">
+      <div className="flex w-1/4 min-w-fit mx-auto">
         <button
           type="submit"
-          className="mx-auto w-1/4 rounded bg-blue-500 mt-10 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+          className="mx-auto w-1/4 min-w-fit rounded bg-blue-500 mt-10 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
         >
           Save
         </button>
