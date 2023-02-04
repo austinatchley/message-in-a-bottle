@@ -12,7 +12,7 @@ export default function GenericToolbar({ titleMessage, titleLinkUrl, menuMessage
         <div className="flex items-center justify-between bg-slate-800 p-4 text-yellow-400">
             <Link to={titleLinkUrl} className="flex flex-row w-full">
                 <span className="w-6 h-6 mx-4">
-                    <img src="the_bottle_1.png"></img>
+                    <img src="/the_bottle_1.png"></img>
                 </span>
 
                 <h1 className="text-left h-8 w-full text-2xl font-bold font-title italic">
