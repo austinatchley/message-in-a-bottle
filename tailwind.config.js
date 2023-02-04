@@ -12,7 +12,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "landing-page-background": "url('/landing-background.png')"
+        "landing-page-background": "url('/images/landing-background.png')"
       }
     },
   },
