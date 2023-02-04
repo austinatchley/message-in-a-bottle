@@ -3,6 +3,7 @@ import { json } from "@remix-run/node";
 import { Form, Link, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import Note from "~/components/note";
+import QrCode from "~/components/qr-code";
 
 import { getBoard, deleteBoard, getNotesInBoard } from "~/models/board.server";
 
@@ -69,7 +70,9 @@ export default function BoardDetailsPage() {
       <h3 className="text-2xl py-4 font-bold">Debug</h3>
       <div className="pt-8 pb-8 grid justify-start">
         <h3 className="text-xl font-bold">Generated QR Code</h3>
-        <img className="justify-self-center py-4" src={data.qrCodeUrl}></img>
+        <QrCode
+          url={data.qrCodeUrl}
+        />
       </div>
 
       <hr></hr>

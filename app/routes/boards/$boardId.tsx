@@ -3,6 +3,7 @@ import { json } from "@remix-run/node";
 import { Form, Link, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import Note from "~/components/note";
+import QrCode from "~/components/qr-code";
 
 import { getBoard, deleteBoard, getNotesInBoard } from "~/models/board.server";
 
@@ -53,16 +54,26 @@ export default function BoardDetailsPage() {
 
         <div className="relative grid grid-cols-3 lg:grid-cols-6 gap-4 py-4 ml-4">
           {data.notes?.notes.map(note =>
-              <Note
-                key={note.id}
-                id={note.id}
-                title={note.title}
-                body={note.body}
-                createdAt={note.createdAt}
-              />
+            <Note
+              key={note.id}
+              id={note.id}
+              title={note.title}
+              body={note.body}
+              createdAt={note.createdAt}
+            />
           )}
         </div>
       </div>
+
+      <hr></hr>
+
+      <div className="pt-8 pb-8 grid justify-center">
+        <h3 className="text-xl font-bold">Generated QR Code</h3>
+        <QrCode
+          url={data.qrCodeUrl}
+        />
+      </div>
+
 
       <hr></hr>
 
