@@ -46,14 +46,13 @@ export default function BoardDetailsPage() {
         <h1 className="text-2xl text-bold font-title">{data.board.title}</h1>
       </div>
 
-      <div className="border-2 border-stone-800 rounded-md bg-slate-200">
-        <div className="items-center justify-center rounded-md bg-sky-200 px-4 py-3 text-base font-medium text-black">
-          <div className="text-xl grid place-items-center">Notes</div>
+      <div className="relative box-border w-full border-2 border-stone-800 rounded-md bg-slate-200">
+        <div className="w-full rounded-md bg-sky-200 px-4 py-3">
+          <div className="text-center text-xl font-medium text-black">Notes</div>
         </div>
 
-        <div className="grid grid-cols-3 gap-8 py-4 ml-4">
+        <div className="relative grid grid-cols-3 lg:grid-cols-6 gap-4 py-4 ml-4">
           {data.notes?.notes.map(note =>
-            <div className="">
               <Note
                 key={note.id}
                 id={note.id}
@@ -61,7 +60,6 @@ export default function BoardDetailsPage() {
                 body={note.body}
                 createdAt={note.createdAt}
               />
-            </div>
           )}
         </div>
       </div>
