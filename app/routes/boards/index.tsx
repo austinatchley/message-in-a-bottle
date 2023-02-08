@@ -14,9 +14,9 @@ export default function BoardIndexPage() {
         </Link>
       </div>
 
-      <div className="pt-16">
+      <div className="pt-16 text-center">
         <p>
-          To find an existing board, scan its QR code and save the link. All boards are private by convention
+          To find an existing board, scan its QR code and save the link. All boards are private by convention. If you lose the link, the board is gone forever!
         </p>
       </div>
     </div>

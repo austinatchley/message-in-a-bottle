@@ -56,26 +56,32 @@ export default function BoardDetailsPage() {
           </div>
         </div>
 
-        <div className="pt-8 pb-8 grid justify-center">
-          <h3 className="text-xl font-bold">Generated QR Code</h3>
-          <QrCode
-            relativePath={`boards/${data.board.id}`}
-            width={100}
-            height={100}
-          />
-        </div>
-
-
+        <div className="pt-20"></div>
         <hr></hr>
 
         <div className="pl-4 py-10 grid">
-          <Link to={`/notes/new?boardId=${data.board.id}`} >
-            <button
-              className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-            >
-              Create a new note in this board
-            </button>
-          </Link>
+          <div className="relative w-full">
+            <div className="absolute w-200 h-64 inset-y-0 left-0 py-4">
+              <Link to={`/notes/new?boardId=${data.board.id}`} >
+                <button
+                  className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+                >
+                  Create a new note in this board
+                </button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative w-full">
+            <div className="absolute w-64 h-64 inset-y-0 right-0">
+              <h3 className="text-xl font-bold text-center">Generated QR Code</h3>
+              <QrCode
+                relativePath={`boards/${data.board.id}`}
+                width={100}
+                height={100}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
