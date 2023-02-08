@@ -17,17 +17,7 @@ export async function loader({ request, params }: LoaderArgs) {
 
   const notes = await getNotesInBoard({ id: params.boardId });
 
-  const qrCodeUrl = getQrCodeUrl(params.boardId);
-
-  return json({ board, notes, qrCodeUrl });
-}
-
-function getQrCodeUrl(id: string): string {
-  const size = 100;
-  const baseUrl = "https://message-in-a-bottle.fly.dev";
-  const url = `${baseUrl}/boards/${id}`;
-
-  return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${url}`;
+  return json({ board, notes });
 }
 
 export async function action({ request, params }: ActionArgs) {
@@ -43,48 +33,50 @@ export default function BoardDetailsPage() {
 
   return (
     <div className="min-h-full">
-      <div className="pb-4">
-        <h1 className="text-2xl text-bold font-title">{data.board.title}</h1>
-      </div>
-
-      <div className="relative box-border w-full border-2 border-stone-800 rounded-md bg-slate-200">
-        <div className="w-full rounded-md bg-sky-200 px-4 py-3">
-          <div className="text-center text-xl font-medium text-black">Notes</div>
+      <div className="mx-auto w-1/2">
+        <div className="pb-4">
+          <h1 className="text-2xl text-bold font-title text-left">{data.board.title}</h1>
         </div>
 
-        <div className="relative grid grid-cols-3 lg:grid-cols-6 gap-4 py-4 ml-4">
-          {data.notes?.notes.map(note =>
-            <Note
-              key={note.id}
-              id={note.id}
-              title={note.title}
-              body={note.body}
-              createdAt={note.createdAt}
-            />
-          )}
+        <div className="relative box-border w-full border-2 border-stone-800 rounded-md bg-slate-200">
+          <div className="w-full rounded-md bg-sky-200 px-4 py-3">
+            <div className="text-left text-xl font-medium text-black">Notes</div>
+          </div>
+
+          <div className="relative grid grid-cols-3 lg:grid-cols-4 gap-4 py-4 ml-4">
+            {data.notes?.notes.map(note =>
+              <Note
+                key={note.id}
+                id={note.id}
+                title={note.title}
+                body={note.body}
+                createdAt={note.createdAt}
+              />
+            )}
+          </div>
         </div>
-      </div>
 
-      <hr></hr>
+        <div className="pt-8 pb-8 grid justify-center">
+          <h3 className="text-xl font-bold">Generated QR Code</h3>
+          <QrCode
+            relativePath={`boards/${data.board.id}`}
+            width={100}
+            height={100}
+          />
+        </div>
 
-      <div className="pt-8 pb-8 grid justify-center">
-        <h3 className="text-xl font-bold">Generated QR Code</h3>
-        <QrCode
-          url={data.qrCodeUrl}
-        />
-      </div>
 
+        <hr></hr>
 
-      <hr></hr>
-
-      <div className="pl-4 py-10">
-        <Link to={`/notes/new?boardId=${data.board.id}`} >
-          <button
-            className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-          >
-            Create a new note in this board
-          </button>
-        </Link>
+        <div className="pl-4 py-10 grid">
+          <Link to={`/notes/new?boardId=${data.board.id}`} >
+            <button
+              className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+            >
+              Create a new note in this board
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
