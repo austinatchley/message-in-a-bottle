@@ -71,7 +71,7 @@ export default function BoardDetailsPage() {
       <div className="pt-8 pb-8 grid justify-start">
         <h3 className="text-xl font-bold">Generated QR Code</h3>
         <QrCode
-          url={data.qrCodeUrl}
+          relativePath={`boards/${data.qrCodeUrl}`}
         />
       </div>
 
