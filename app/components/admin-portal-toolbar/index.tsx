@@ -5,7 +5,7 @@ export default function AdminPortalToolbar() {
         <GenericToolbar
             titleMessage="message~in~a~bottle"
             titleLinkUrl="/"
-            menuMessage="Admin Portal"
+            menuMessage="Admin"
             menuLinkUrl="/admin"
         />
     );
