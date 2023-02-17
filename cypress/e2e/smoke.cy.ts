@@ -57,7 +57,7 @@ describe("smoke tests", () => {
     cy.contains("Create a new note in this board").click();
 
     cy.findByRole("textbox", { name: /title/i }).type(testNote.title);
-    cy.findByRole("textbox", { name: /body/i }).type(testNote.body);
+    cy.findByRole("textbox", { name: /message/i }).type(testNote.body);
     cy.findByRole("button", { name: /save/i }).click();
 
     cy.findAllByText(testNote.title);

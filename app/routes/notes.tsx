@@ -1,21 +1,24 @@
 import type { LoaderArgs } from "@remix-run/node";
-import { Outlet } from "@remix-run/react";
+import { Outlet, useLoaderData } from "@remix-run/react";
 import MenuToolbar from "~/components/menu-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
-  return null;
 }
 
-export default function NotesPage() {
+export default function Notes() {
+  const data = useLoaderData<typeof loader>();
+
   return (
     <div className="flex h-full min-h-screen flex-col">
-      <MenuToolbar />
+      <header>
+        <MenuToolbar />
+      </header>
 
-      <main>
+      <main className="flex h-full bg-stone-100">
         <div className="flex-1 p-6">
           <Outlet />
         </div>
       </main>
-    </div >
+    </div>
   );
 }

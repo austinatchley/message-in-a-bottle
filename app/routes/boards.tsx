@@ -1,16 +1,11 @@
 import type { LoaderArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
-import React from "react";
-import { getBoards } from "../models/board.server";
+import { Outlet, useLoaderData } from "@remix-run/react";
 import MenuToolbar from "~/components/menu-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
-  const boardItems = await getBoards();
-  return json({ boardItems: boardItems });
 }
 
-export default function Index() {
+export default function Boards() {
   const data = useLoaderData<typeof loader>();
 
   return (
