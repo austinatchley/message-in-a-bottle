@@ -41,13 +41,13 @@ export default function NewBoardPage() {
         width: "100%",
       }}
     >
-      <div>
+      <div className="flex flex-col justify-evenly py-40">
         <label className="flex w-full flex-col gap-1">
           <div className="mx-auto text-xl font-title">Title: </div>
           <input
             ref={titleRef}
             name="title"
-            className="mx-auto w-1/4 text-center rounded-md border-2 border-slate-500 focus:border-blue-500 mt-4 px-3 text-lg leading-loose"
+            className="mx-auto max-w-lg md:w-1/2 text-center rounded-md border-2 border-slate-500 focus:border-blue-500 mt-4 px-3 text-lg leading-loose"
             aria-invalid={actionData?.errors?.title ? true : undefined}
             aria-errormessage={
               actionData?.errors?.title ? "title-error" : undefined
@@ -55,19 +55,19 @@ export default function NewBoardPage() {
           />
         </label>
         {actionData?.errors?.title && (
-          <div className="pt-1 text-red-700" id="title-error">
+          <div className="pt-1 text-red-700 text-center" id="title-error">
             {actionData.errors.title}
           </div>
         )}
-      </div>
 
-      <div className="flex w-1/4 min-w-fit mx-auto">
-        <button
-          type="submit"
-          className="mx-auto w-1/4 min-w-fit rounded bg-blue-500 mt-10 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
-          Save
-        </button>
+        <div className="flex max-w-lg min-w-fit mx-auto">
+          <button
+            type="submit"
+            className="mx-auto rounded bg-blue-500 mt-10 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+          >
+            Save
+          </button>
+        </div>
       </div>
     </Form>
   );
