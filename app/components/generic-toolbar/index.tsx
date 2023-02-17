@@ -9,8 +9,8 @@ interface GenericToolbarProps {
 
 export default function GenericToolbar({ titleMessage, titleLinkUrl, menuMessage, menuLinkUrl }: GenericToolbarProps) {
     return (
-        <div className="flex justify-between bg-slate-800 p-2 text-yellow-400">
-            <Link to={titleLinkUrl} className="flex flex-row w-full h-full">
+        <div className="flex justify-between items-center bg-slate-800 p-2 text-yellow-400">
+            <Link to={titleLinkUrl} className="flex items-center w-full h-full">
                 <div className="mx-4">
                     <img src="/images/logo.png"></img>
                 </div>
