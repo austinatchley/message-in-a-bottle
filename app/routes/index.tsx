@@ -9,13 +9,12 @@ export const meta: MetaFunction = () => ({
 
 export default function Index() {
   return (
-    <main className="min-h-screen bg-landing-page-background bg-repeat-x bg-slate-800 flex flex-col justify-between md:items-center md:justify-center">
-      <div className="w-full h-screen md:w-1/2">
+    <main className="min-h-screen bg-landing-page-background bg-repeat-x bg-slate-800 flex flex-col justify-evenly md:items-center md:justify-center">
         <div className="mx-auto mt-10 bg-zinc-800">
-          <img src="/images/landing-background-alternate.png"></img>
+          <img src="/images/splash.png"></img>
         </div>
 
-        <div className="flex flex-col justify-evenly w-full h-full py-6 sm:mt-20">
+        <div className="flex flex-col justify-center w-full h-full sm:mt-20">
           <div className="mx-auto text-slate-800">
             <Link
               to="/boards"
@@ -25,7 +24,6 @@ export default function Index() {
             </Link>
           </div>
         </div>
-      </div>
     </main>
   );
 }
