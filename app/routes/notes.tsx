@@ -3,6 +3,7 @@ import { Outlet, useLoaderData } from "@remix-run/react";
 import MenuToolbar from "~/components/menu-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
+  return null;
 }
 
 export default function Notes() {

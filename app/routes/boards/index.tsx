@@ -9,7 +9,7 @@ export default function BoardIndexPage() {
             <p className="text-center pt-12 font-accent text-4xl">
               Create a new bottle
             </p>
-            <div className="mx-auto h-32 w-32 pt-8 object-scale-down">
+            <div className="mx-auto h-32 w-32 xl:h-64 xl:w-64 pt-8 object-scale-down">
               <img src="/images/the_bottle_1.png" className="mx-auto"></img>
             </div>
           </div>
