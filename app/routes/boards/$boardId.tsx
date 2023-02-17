@@ -59,7 +59,7 @@ export default function BoardDetailsPage() {
         <div className="pt-20"></div>
         <hr></hr>
 
-        <div className="px-4 py-10 flex justify-around h-screen w-full">
+        <div className="px-4 py-10 flex justify-around h-full w-full">
           <div className="w-200 h-64 py-4">
             <Link to={`/notes/new?boardId=${data.board.id}`} >
               <button
