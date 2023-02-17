@@ -33,7 +33,7 @@ export default function BoardDetailsPage() {
 
   return (
     <div className="min-h-full">
-      <div className="mx-auto w-1/2">
+      <div className="mx-auto max-w-screen w-full px-8 lg:w-1/2 lg:px-0">
         <div className="pb-4">
           <h1 className="text-2xl text-bold font-title text-left">{data.board.title}</h1>
         </div>
@@ -59,28 +59,24 @@ export default function BoardDetailsPage() {
         <div className="pt-20"></div>
         <hr></hr>
 
-        <div className="pl-4 py-10 grid">
-          <div className="relative w-full">
-            <div className="absolute w-200 h-64 inset-y-0 left-0 py-4">
-              <Link to={`/notes/new?boardId=${data.board.id}`} >
-                <button
-                  className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-                >
-                  Create a new note in this board
-                </button>
-              </Link>
-            </div>
+        <div className="px-4 py-10 flex justify-around h-screen w-full">
+          <div className="w-200 h-64 py-4">
+            <Link to={`/notes/new?boardId=${data.board.id}`} >
+              <button
+                className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+              >
+                Create a new note in this board
+              </button>
+            </Link>
           </div>
 
-          <div className="relative w-full">
-            <div className="absolute w-64 h-64 inset-y-0 right-0">
-              <h3 className="text-xl font-bold text-center">Generated QR Code</h3>
-              <QrCode
-                relativePath={`boards/${data.board.id}`}
-                width={100}
-                height={100}
-              />
-            </div>
+          <div className="w-64 h-64">
+            <h3 className="text-xl font-bold text-center">Generated QR Code</h3>
+            <QrCode
+              relativePath={`boards/${data.board.id}`}
+              width={100}
+              height={100}
+            />
           </div>
         </div>
       </div>
