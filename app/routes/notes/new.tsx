@@ -80,7 +80,7 @@ export default function NewNotePage() {
     <div className="flex flex-col w-full mt-20 max-w-sm mx-auto">
       <div className="py-4 bg-blue-600 w-full rounded">
         <label className="text-white pl-4 font-title">
-          <span className="">
+          <span>
             New Note
           </span>
         </label>
