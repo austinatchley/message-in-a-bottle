@@ -32,43 +32,55 @@ export default function NewBoardPage() {
   }, [actionData]);
 
   return (
-    <Form
-      method="post"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 8,
-        width: "100%",
-      }}
-    >
-      <div className="flex flex-col justify-evenly py-40">
-        <label className="flex w-full flex-col gap-1">
-          <div className="mx-auto text-xl font-title">Title: </div>
-          <input
-            ref={titleRef}
-            name="title"
-            className="mx-auto max-w-lg md:w-1/2 text-center rounded-md border-2 border-slate-500 focus:border-blue-500 mt-4 px-3 text-lg leading-loose"
-            aria-invalid={actionData?.errors?.title ? true : undefined}
-            aria-errormessage={
-              actionData?.errors?.title ? "title-error" : undefined
-            }
-          />
+    <div className="flex flex-col w-full mt-20 max-w-sm mx-auto">
+      <div className="py-4 bg-blue-600 w-full rounded">
+        <label className="text-white pl-4 font-title">
+          <span className="">
+            New Board
+          </span>
         </label>
-        {actionData?.errors?.title && (
-          <div className="pt-1 text-red-700 text-center" id="title-error">
-            {actionData.errors.title}
-          </div>
-        )}
+      </div>
+      <Form
+        method="post"
+        reloadDocument
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 8,
+          width: "100%",
+        }}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
 
-        <div className="flex max-w-lg min-w-fit mx-auto">
+        <div>
+          <label className="flex w-full flex-col gap-1 mb-2">
+            <span className="block text-gray-700 text-md font-bold">Title</span>
+            <input
+              ref={titleRef}
+              name="title"
+              className="flex-1 shadow rounded border border-slate-400 px-3 text-lg leading-loose"
+              aria-invalid={actionData?.errors?.title ? true : undefined}
+              aria-errormessage={
+                actionData?.errors?.title ? "title-error" : undefined
+              }
+            />
+          </label>
+          {actionData?.errors?.title && (
+            <div className="pt-1 text-red-700" id="title-error">
+              {actionData.errors.title}
+            </div>
+          )}
+        </div>
+
+        <div className="text-right mt-6">
           <button
             type="submit"
-            className="mx-auto rounded bg-blue-500 mt-10 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+            className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
           >
             Save
           </button>
         </div>
-      </div>
-    </Form>
+      </Form>
+    </div>
   );
 }
