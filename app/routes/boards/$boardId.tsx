@@ -33,7 +33,7 @@ export default function BoardDetailsPage() {
 
   return (
     <div className="min-h-full">
-      <div className="mx-auto max-w-sm sm:max-w-xl lg:max-w-4xl w-full px-8">
+      <div className="mx-auto max-w-sm sm:max-w-xl lg:max-w-4xl w-full px-8 sm:px-0">
         <div className="pb-4">
           <h1 className="text-2xl text-bold font-title text-left">{data.board.title}</h1>
         </div>
