@@ -78,6 +78,13 @@ export default function NewNotePage() {
 
   return (
     <div className="flex flex-col w-full mt-20 max-w-sm mx-auto">
+      <div className="py-4 bg-blue-600 w-full rounded">
+        <label className="text-white pl-4 font-title">
+          <span className="">
+            New Note
+          </span>
+        </label>
+      </div>
       <Form
         method="post"
         reloadDocument
@@ -91,7 +98,7 @@ export default function NewNotePage() {
       >
 
         <div>
-          <label className="flex w-full flex-col gap-1 my-2">
+          <label className="flex w-full flex-col gap-1 mb-2">
             <span className="block text-gray-700 text-md font-bold">Title</span>
             <input
               ref={titleRef}
@@ -131,7 +138,7 @@ export default function NewNotePage() {
           )}
         </div>
 
-        <div className="text-right mt-4">
+        <div className="text-right mt-6">
           <button
             type="submit"
             className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
