@@ -26,18 +26,13 @@ export default function About() {
                         <p>
                             This project is a work-in-progress. Eventually, it will serve as a
                             platform for users to anonymously send and receive messages from bottles
-                            only accessible by QR code.
+                            which are tied to physical location and only accessible by QR code.
                         </p>
                         <br></br>
                         <div className="text-center text-blue-600">
-                            <p className="inline-block">
-                                See the latest progress on&nbsp;
-                            </p>
-                            <span>
-                                <Link to="austinatchley.xyz">
-                                    austinatchley.xyz
-                                </Link>
-                            </span>
+                            <a href="https://www.austinatchley.xyz">
+                                See the latest progress on austinatchley.xyz
+                            </a>
                         </div>
                     </div>
                 </div>
