@@ -1,9 +1,8 @@
 import { ActionArgs, LoaderArgs, redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useCatch, useLoaderData } from "@remix-run/react";
+import { useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
-import Note from "~/components/note";
-import QrCode from "~/components/qr-code";
+import BottleBoardView from "../../components/bottle-board-view";
 
 import { getBottle, deleteBottle, getNotesInBottle } from "~/models/bottle.server";
 
@@ -17,7 +16,7 @@ export async function loader({ request, params }: LoaderArgs) {
 
   const notes = await getNotesInBottle({ id: params.bottleId });
 
-  return json({ bottle: bottle, notes });
+  return json({ bottle, notes });
 }
 
 export async function action({ request, params }: ActionArgs) {
@@ -33,53 +32,10 @@ export default function BottleDetailsPage() {
 
   return (
     <div className="min-h-full">
-      <div className="mx-auto max-w-sm sm:max-w-xl lg:max-w-4xl w-full px-8 sm:px-0">
-        <div className="pb-4">
-          <h1 className="text-2xl text-bold font-title text-left">{data.bottle.title}</h1>
-        </div>
-
-        <div className="relative box-border w-full border-2 border-stone-800 rounded-md bg-slate-200">
-          <div className="w-full rounded-md bg-sky-200 px-4 py-3">
-            <div className="text-left text-xl font-medium text-black">Notes</div>
-          </div>
-
-          <div className="relative grid grid-cols-3 lg:grid-cols-4 gap-4 py-4 ml-4">
-            {data.notes?.notes.map(note =>
-              <Note
-                key={note.id}
-                id={note.id}
-                title={note.title}
-                body={note.body}
-                createdAt={note.createdAt}
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="pt-20"></div>
-        <hr></hr>
-
-        <div className="px-4 py-10 flex justify-around h-full w-full">
-          <div className="w-200 h-64 py-4">
-            <Link to={`/notes/new?bottleId=${data.bottle.id}`} >
-              <button
-                className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-              >
-                Create a new note in this bottle
-              </button>
-            </Link>
-          </div>
-
-          <div className="w-64 h-64">
-            <h3 className="text-xl font-bold text-center">Generated QR Code</h3>
-            <QrCode
-              relativePath={`bottles/${data.bottle.id}`}
-              width={100}
-              height={100}
-            />
-          </div>
-        </div>
-      </div>
+      <BottleBoardView
+        bottle={data.bottle}
+        notes={data.notes.notes}
+      />
     </div>
   );
 }
