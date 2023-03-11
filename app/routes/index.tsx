@@ -18,6 +18,7 @@ export default function Index() {
         <div className="mx-auto text-slate-800 my-8">
           <Link
             to="/about"
+            prefetch="intent"
             className="p-12 text-center rounded-md border shadow-md shadow-amber-200/20 hover:shadow-amber-400/20 bg-slate-200 py-3 hover:bg-slate-300"
           >
             About
@@ -26,6 +27,7 @@ export default function Index() {
         <div className="mx-auto text-slate-800 my-8">
           <Link
             to="/boards"
+            prefetch="intent"
             className="p-20 text-center rounded-md border shadow-lg shadow-amber-300/40 hover:shadow-amber-500/60 bg-gradient-to-bl from-yellow-300 to-amber-300 py-4"
           >
             Enter
