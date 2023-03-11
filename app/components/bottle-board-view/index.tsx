@@ -4,7 +4,7 @@ import { Link } from "@remix-run/react";
 
 interface BottleBoardViewProps {
     bottle: any;
-    notes: Array;
+    notes: Array<any> | undefined;
 }
 
 export default function BottleBoardView({ bottle, notes}: BottleBoardViewProps) {
@@ -20,7 +20,7 @@ export default function BottleBoardView({ bottle, notes}: BottleBoardViewProps) 
                 </div>
 
                 <div className="relative grid grid-cols-3 lg:grid-cols-4 gap-4 py-4 ml-4">
-                    {notes.map(note =>
+                    {notes?.map(note =>
                         <Note
                             key={note.id}
                             id={note.id}

@@ -17,6 +17,9 @@ export async function loader({ request, params }: LoaderArgs) {
   }
 
   const notes = await getNotesInBottle({ id: params.bottleId });
+  if (!notes) {
+    throw new Response("Not Found", { status: 404 });
+  }
 
   const qrCodeUrl = getQrCodeUrl(params.bottleId);
 
@@ -46,8 +49,8 @@ export default function BottleDetailsPage() {
     <div>
       <BottleBoardView
         bottle={data.bottle}
-        notes={data.notes.notes}
-        />
+        notes={data.notes?.notes}
+      />
 
       <h3 className="text-xl py-4 font-bold">Admin Functionality</h3>
 

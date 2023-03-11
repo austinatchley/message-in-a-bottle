@@ -34,7 +34,7 @@ export default function BottleDetailsPage() {
     <div className="min-h-full">
       <BottleBoardView
         bottle={data.bottle}
-        notes={data.notes.notes}
+        notes={data.notes?.notes}
       />
     </div>
   );
