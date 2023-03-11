@@ -1,5 +1,5 @@
 import { LoaderArgs } from "@remix-run/node";
-import { Outlet, useLoaderData } from "@remix-run/react";
+import { Outlet, useLoaderData, Link } from "@remix-run/react";
 import MenuToolbar from "~/components/menu-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
@@ -15,19 +15,29 @@ export default function About() {
                 <MenuToolbar />
             </header>
 
-            <main className="flex h-full bg-stone-100">
-                <div className="flex-1 p-6">
-                    <div className="w-full max-w-md mx-auto bg-white rounded shadow mt-20">
-                        <div className="py-4 bg-blue-600 w-full rounded">
-                            <span className="text-white pl-4 font-title">
-                                About
-                            </span>
-                        </div>
-                        <div className="p-8">
-                            <p>
-                                This project is a work-in-progress. Eventually, it will serve as a
-                                platform for neighbors to anonymously collaborate to create poetry
+            <main className="flex h-full bg-yellow-400">
+                <div className="container w-full max-w-lg m-auto bg-slate-100 rounded shadow border-slate-800 border-2">
+                    <div className="py-4 bg-slate-600 w-full">
+                        <span className="text-white pl-4 font-title">
+                            About
+                        </span>
+                    </div>
+                    <div className="p-8 w-full">
+                        <p>
+                            This project is a work-in-progress. Eventually, it will serve as a
+                            platform for users to anonymously send and receive messages from bottles
+                            only accessible by QR code.
+                        </p>
+                        <br></br>
+                        <div className="text-center text-blue-600">
+                            <p className="inline-block">
+                                See the latest progress on&nbsp;
                             </p>
+                            <span>
+                                <Link to="austinatchley.xyz">
+                                    austinatchley.xyz
+                                </Link>
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 
 interface GenericToolbarProps {
-    titleMessage: string;
+    titleMessage: string; // TODO: This has been replaced with the logo. Remove this field and references to it
     titleLinkUrl: string;
     menuMessage: string;
     menuLinkUrl: string;
