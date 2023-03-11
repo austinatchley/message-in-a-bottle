@@ -15,7 +15,7 @@ const BASE_URL: string = "https://message-in-a-bottle.fly.dev/";
 /**
  * Given a relative path on this website, construct the full URL and use it to create an API request target for the QR Code API
  * @param relativePath The relative path on this website (e.g. if the full URL is 
- *  "https://message-in-a-bottle.fly.dev/boards", then the relative path is "boards"
+ *  "https://message-in-a-bottle.fly.dev/bottles", then the relative path is "bottles"
  */
 function getQrCodeUrl(relativePath: string, width: number = 100, height: number = 100) {
     const url = BASE_URL + relativePath;

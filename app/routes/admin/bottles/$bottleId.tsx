@@ -5,46 +5,46 @@ import invariant from "tiny-invariant";
 import Note from "~/components/note";
 import QrCode from "~/components/qr-code";
 
-import { getBoard, deleteBoard, getNotesInBoard } from "~/models/board.server";
+import { getBottle, deleteBottle, getNotesInBottle } from "~/models/bottle.server";
 
 export async function loader({ request, params }: LoaderArgs) {
-  invariant(params.boardId, "boardId not found");
+  invariant(params.bottleId, "bottleId not found");
 
-  const board = await getBoard({ id: params.boardId });
-  if (!board) {
+  const bottle = await getBottle({ id: params.bottleId });
+  if (!bottle) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const notes = await getNotesInBoard({ id: params.boardId });
+  const notes = await getNotesInBottle({ id: params.bottleId });
 
-  const qrCodeUrl = getQrCodeUrl(params.boardId);
+  const qrCodeUrl = getQrCodeUrl(params.bottleId);
 
-  return json({ board, notes, qrCodeUrl });
+  return json({ bottle, notes, qrCodeUrl });
 }
 
 function getQrCodeUrl(id: string): string {
   const size = 100;
   const baseUrl = "https://message-in-a-bottle.fly.dev";
-  const url = `${baseUrl}/boards/${id}`;
+  const url = `${baseUrl}/bottles/${id}`;
 
   return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${url}`;
 }
 
 export async function action({ request, params }: ActionArgs) {
-  invariant(params.boardId, "boardId not found");
+  invariant(params.bottleId, "bottleId not found");
 
-  await deleteBoard({ id: params.boardId });
+  await deleteBottle({ id: params.bottleId });
 
-  return redirect("/admin/boards");
+  return redirect("/admin/bottles");
 }
 
-export default function BoardDetailsPage() {
+export default function BottleDetailsPage() {
   const data = useLoaderData<typeof loader>();
 
   return (
     <div>
       <div className="pb-4">
-        <div className="text-2xl">{data.board.title}</div>
+        <div className="text-2xl">{data.bottle.title}</div>
       </div>
 
       <div className="border-2 border-stone-800 rounded-md bg-slate-200">
@@ -71,7 +71,7 @@ export default function BoardDetailsPage() {
       <div className="pt-8 pb-8 grid justify-start">
         <h3 className="text-xl font-bold">Generated QR Code</h3>
         <QrCode
-          relativePath={`boards/${data.qrCodeUrl}`}
+          relativePath={`bottles/${data.qrCodeUrl}`}
         />
       </div>
 
@@ -81,11 +81,11 @@ export default function BoardDetailsPage() {
 
       <div className="flex flex-row">
         <div className="p-4">
-          <Link to={`/notes/new?boardId=${data.board.id}`} >
+          <Link to={`/notes/new?bottleId=${data.bottle.id}`} >
             <button
               className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             >
-              Create a new note in this board
+              Create a new note in this bottle 
             </button>
           </Link>
         </div>
@@ -102,11 +102,11 @@ export default function BoardDetailsPage() {
         </div>
 
         <div className="p-4">
-          <Link to={`/boards/${data.board.id}`} >
+          <Link to={`/bottles/${data.bottle.id}`} >
             <button
               className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             >
-              View this board's page
+              View this bottle's page
             </button>
           </Link>
         </div>
@@ -125,7 +125,7 @@ export function CatchBoundary() {
   const caught = useCatch();
 
   if (caught.status === 404) {
-    return <div>board not found</div>;
+    return <div>Bottle not found</div>;
   }
 
   throw new Error(`Unexpected caught response with status: ${caught.status}`);

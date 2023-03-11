@@ -3,7 +3,7 @@ import { json, redirect } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 import * as React from "react";
 
-import { createBoard } from "~/models/board.server";
+import { createBottle } from "~/models/bottle.server";
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
@@ -16,12 +16,12 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  const board = await createBoard({ title });
+  const bottle = await createBottle({ title });
 
-  return redirect(`/admin/boards/${board.id}`);
+  return redirect(`/admin/bottles/${bottle.id}`);
 }
 
-export default function NewBoardPage() {
+export default function NewBottlePage() {
   const actionData = useActionData<typeof action>();
   const titleRef = React.useRef<HTMLInputElement>(null);
 

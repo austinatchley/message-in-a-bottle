@@ -4,7 +4,7 @@ import type { Note } from "@prisma/client";
 export function getNote(
   { id }: Pick<Note, "id">) {
   return prisma.note.findFirst({
-    select: { id: true, boardId: true, body: true, title: true, xpos: true, ypos: true, createdAt: true },
+    select: { id: true, bottleId: true, body: true, title: true, xpos: true, ypos: true, createdAt: true },
     where: { id },
   });
 }
@@ -21,15 +21,15 @@ export function createNote({
   title,
   xpos,
   ypos,
-  boardId
-}: Pick<Note, "body" | "title" | "xpos" | "ypos" | "boardId">) {
+  bottleId
+}: Pick<Note, "body" | "title" | "xpos" | "ypos" | "bottleId">) {
   return prisma.note.create({
     data: {
       title,
       body,
       xpos,
       ypos,
-      boardId
+      bottleId
     },
   });
 }

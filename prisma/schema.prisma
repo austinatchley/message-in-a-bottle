@@ -18,11 +18,11 @@ model Note {
 
   createdAt DateTime @default(now())
 
-  board     Board? @relation(fields: [boardId], references: [id])
-  boardId   String?
+  bottle    Bottle? @relation(fields: [bottleId], references: [id])
+  bottleId  String?
 }
 
-model Board {
+model Bottle {
   id    String @id @default(cuid())
 
   title String

@@ -6,13 +6,13 @@ import { createNote } from "~/models/note.server";
 
 export async function loader({ request, params }: LoaderArgs) {
   const url = new URL(request.url);
-  const boardId = url.searchParams.get("boardId");
+  const bottleId = url.searchParams.get("bottleId");
 
-  if (!boardId) {
-    throw new Response("Malformed input. Board ID is null", { status: 400 });
+  if (!bottleId) {
+    throw new Response("Malformed input. Bottle ID is null", { status: 400 });
   }
 
-  return json({ boardId });
+  return json({ bottleId });
 }
 
 export async function action({ request }: ActionArgs) {
@@ -24,46 +24,46 @@ export async function action({ request }: ActionArgs) {
   const ypos = 0;
 
   const url = new URL(request.url);
-  const boardId = url.searchParams.get("boardId");
+  const bottleId = url.searchParams.get("bottleId");
 
   if (typeof title !== "string" || title.length === 0) {
     return json(
-      { errors: { title: "Title is required", body: null, xpos: 0, ypos: 0, boardId: null } },
+      { errors: { title: "Title is required", body: null, xpos: 0, ypos: 0, bottleId: null } },
       { status: 400 }
     );
   }
 
   if (typeof body !== "string" || body.length === 0) {
     return json(
-      { errors: { body: "Body is required", title: null, xpos: 0, ypos: 0, boardId: null } },
+      { errors: { body: "Body is required", title: null, xpos: 0, ypos: 0, bottleId: null } },
       { status: 400 }
     );
   }
 
   if (typeof xpos !== "number") {
     return json(
-      { errors: { xpos: "xpos is required", title: null, body: null, ypos: 0, boardId: null } },
+      { errors: { xpos: "xpos is required", title: null, body: null, ypos: 0, bottleId: null } },
       { status: 400 }
     );
   }
 
   if (typeof ypos !== "number") {
     return json(
-      { errors: { ypos: "ypos is required", title: null, xpos: 0, body: null, boardId: null } },
+      { errors: { ypos: "ypos is required", title: null, xpos: 0, body: null, bottleId: null } },
       { status: 400 }
     );
   }
 
-  const note = await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos), boardId });
+  const note = await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos), bottleId });
 
-  return redirect(`/boards/${boardId}`);
+  return redirect(`/bottles/${bottleId}`);
 }
 
 export default function NewNotePage() {
   const data = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
 
-  const boardIdRef = React.useRef<HTMLTextAreaElement>(null);
+  const bottleIdRef = React.useRef<HTMLTextAreaElement>(null);
 
   const titleRef = React.useRef<HTMLInputElement>(null);
   const bodyRef = React.useRef<HTMLTextAreaElement>(null);

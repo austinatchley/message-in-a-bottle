@@ -1,41 +1,41 @@
 import { ActionArgs, LoaderArgs, redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Form, Link, useCatch, useLoaderData } from "@remix-run/react";
+import { Link, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import Note from "~/components/note";
 import QrCode from "~/components/qr-code";
 
-import { getBoard, deleteBoard, getNotesInBoard } from "~/models/board.server";
+import { getBottle, deleteBottle, getNotesInBottle } from "~/models/bottle.server";
 
 export async function loader({ request, params }: LoaderArgs) {
-  invariant(params.boardId, "boardId not found");
+  invariant(params.bottleId, "bottleId not found");
 
-  const board = await getBoard({ id: params.boardId });
-  if (!board) {
+  const bottle = await getBottle({ id: params.bottleId });
+  if (!bottle) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const notes = await getNotesInBoard({ id: params.boardId });
+  const notes = await getNotesInBottle({ id: params.bottleId });
 
-  return json({ board, notes });
+  return json({ bottle: bottle, notes });
 }
 
 export async function action({ request, params }: ActionArgs) {
-  invariant(params.boardId, "boardId not found");
+  invariant(params.bottleId, "bottleId not found");
 
-  await deleteBoard({ id: params.boardId });
+  await deleteBottle({ id: params.bottleId });
 
-  return redirect("/boards");
+  return redirect("/bottles");
 }
 
-export default function BoardDetailsPage() {
+export default function BottleDetailsPage() {
   const data = useLoaderData<typeof loader>();
 
   return (
     <div className="min-h-full">
       <div className="mx-auto max-w-sm sm:max-w-xl lg:max-w-4xl w-full px-8 sm:px-0">
         <div className="pb-4">
-          <h1 className="text-2xl text-bold font-title text-left">{data.board.title}</h1>
+          <h1 className="text-2xl text-bold font-title text-left">{data.bottle.title}</h1>
         </div>
 
         <div className="relative box-border w-full border-2 border-stone-800 rounded-md bg-slate-200">
@@ -61,11 +61,11 @@ export default function BoardDetailsPage() {
 
         <div className="px-4 py-10 flex justify-around h-full w-full">
           <div className="w-200 h-64 py-4">
-            <Link to={`/notes/new?boardId=${data.board.id}`} >
+            <Link to={`/notes/new?bottleId=${data.bottle.id}`} >
               <button
                 className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
               >
-                Create a new note in this board
+                Create a new note in this bottle
               </button>
             </Link>
           </div>
@@ -73,7 +73,7 @@ export default function BoardDetailsPage() {
           <div className="w-64 h-64">
             <h3 className="text-xl font-bold text-center">Generated QR Code</h3>
             <QrCode
-              relativePath={`boards/${data.board.id}`}
+              relativePath={`bottles/${data.bottle.id}`}
               width={100}
               height={100}
             />
@@ -94,7 +94,7 @@ export function CatchBoundary() {
   const caught = useCatch();
 
   if (caught.status === 404) {
-    return <div>board not found</div>;
+    return <div>Bottle not found</div>;
   }
 
   throw new Error(`Unexpected caught response with status: ${caught.status}`);
