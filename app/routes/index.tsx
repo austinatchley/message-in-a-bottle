@@ -12,7 +12,7 @@ export default function Index() {
     <main className="min-h-screen bg-landing-page-background bg-repeat-x bg-slate-800 flex flex-col justify-evenly md:items-center md:justify-center">
       <div className="max-w-3xl">
         <div className="mx-auto bg-zinc-800">
-          <img src="/images/splash.png"></img>
+          <img src="/images/splash.jpg"></img>
         </div>
 
         <div className="flex flex-row justify-evenly w-full h-full sm:mt-20 font-medium my-8">
