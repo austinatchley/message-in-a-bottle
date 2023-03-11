@@ -1,11 +1,11 @@
 import { Link } from "@remix-run/react";
 
-export default function BoardIndexPage() {
+export default function BottleIndexPage() {
   return (
     <p>
-      No board selected. Select a board on the left, or{" "}
+      No bottle selected. Select a bottle on the left, or{" "}
       <Link to="new" className="text-blue-500 underline">
-        create a new board.
+        create a new bottle.
       </Link>
     </p>
   );

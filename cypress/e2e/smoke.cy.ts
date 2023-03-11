@@ -6,7 +6,7 @@ describe("smoke tests", () => {
     body: faker.lorem.sentences(1)
   };
 
-  const testBoard = {
+  const testBottle = {
     title: faker.lorem.words(1)
   };
 
@@ -20,41 +20,41 @@ describe("smoke tests", () => {
     cy.findByText(/No note selected/); // substring match
   });
 
-  it("should allow you to view boards", () => {
+  it("should allow you to view bottles", () => {
     cy.visitAndCheck("/admin");
 
-    cy.findByRole("link", { name: /boards/i }).click();
-    cy.findByText(/No board selected/);
+    cy.findByRole("link", { name: /bottles/i }).click();
+    cy.findByText(/No bottle selected/);
   });
 
-  it("should allow you to create a board", () => {
+  it("should allow you to create a bottle", () => {
     cy.visitAndCheck("/admin");
 
-    cy.findByRole("link", { name: /boards/i }).click();
-    cy.findByText(/No board selected/);
+    cy.findByRole("link", { name: /bottles/i }).click();
+    cy.findByText(/No bottle selected/);
 
-    cy.findByRole("link", { name: /\+ new board/i }).click();
+    cy.findByRole("link", { name: /\+ new bottle/i }).click();
 
-    cy.findByRole("textbox", { name: /title/i }).type(testBoard.title);
+    cy.findByRole("textbox", { name: /title/i }).type(testBottle.title);
     cy.findByRole("button", { name: /save/i }).click();
 
     cy.findByRole("button", { name: /delete/i }).click();
 
-    cy.findByText(/No board selected/);
+    cy.findByText(/No bottle selected/);
   });
 
-  it("should allow you to create a board and a note", () => {
+  it("should allow you to create a bottle and a note", () => {
     cy.visitAndCheck("/admin");
 
-    cy.findByRole("link", { name: /boards/i }).click();
-    cy.findByText(/No board selected/);
+    cy.findByRole("link", { name: /bottles/i }).click();
+    cy.findByText(/No bottle selected/);
 
-    cy.findByRole("link", { name: /\+ new board/i }).click();
+    cy.findByRole("link", { name: /\+ new bottle/i }).click();
 
-    cy.findByRole("textbox", { name: /title/i }).type(testBoard.title);
+    cy.findByRole("textbox", { name: /title/i }).type(testBottle.title);
     cy.findByRole("button", { name: /save/i }).click();
 
-    cy.contains("Create a new note in this board").click();
+    cy.contains("Create a new note in this bottle").click();
 
     cy.findByRole("textbox", { name: /title/i }).type(testNote.title);
     cy.findByRole("textbox", { name: /message/i }).type(testNote.body);
@@ -63,12 +63,12 @@ describe("smoke tests", () => {
     cy.findAllByText(testNote.title);
 
     cy.visitAndCheck("/admin");
-    cy.findByRole("link", { name: /boards/i }).click();
+    cy.findByRole("link", { name: /bottles/i }).click();
 
-    cy.findByText(testBoard.title, { exact: false }).click();
+    cy.findByText(testBottle.title, { exact: false }).click();
     cy.findByRole("button", { name: /delete/i }).click();
 
-    cy.findByText(/No board selected/);
+    cy.findByText(/No bottle selected/);
 
     cy.visitAndCheck("/admin");
     cy.findByRole("link", { name: /notes/i }).click();
