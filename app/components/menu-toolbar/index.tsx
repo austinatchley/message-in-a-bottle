@@ -5,7 +5,7 @@ export default function MenuToolbar() {
         <GenericToolbar
             titleMessage="message~in~a~bottle"
             titleLinkUrl="/"
-            menuMessage="Menu"
+            menuMessage="Home"
             menuLinkUrl="/"
         />
     );
