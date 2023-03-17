@@ -6,7 +6,7 @@ import { BottleView } from "../../components/bottle-view";
 
 import { getBottle, deleteBottle, getNotesInBottle, GetBottleReturnType } from "~/models/bottle.server";
 import { Note } from "@prisma/client";
-import NoteDetailsPage from "../admin/notes/$noteId";
+import { typedjson, useTypedLoaderData } from "remix-typedjson";
 
 export async function loader({ request, params }: LoaderArgs) {
   invariant(params.bottleId, "bottleId not found");
@@ -18,7 +18,7 @@ export async function loader({ request, params }: LoaderArgs) {
 
   const note: Note | undefined = getNote(bottle.notes);
 
-  return json({ bottle, note });
+  return typedjson({ bottle, note });
 }
 
 function getNote(notes: Note[]): Note | undefined {
@@ -39,22 +39,13 @@ export async function action({ request, params }: ActionArgs) {
 }
 
 export default function BottleDetailsPage() {
-  const data = useLoaderData<typeof loader>();
-
-  const serializedNote = data.note;
-  if (!serializedNote || !serializedNote.id) {
-    throw new Error("Note not found");
-  }
-  const note: Note = {
-    ...serializedNote,
-    createdAt: new Date(serializedNote.createdAt)
-  };
+  const data = useTypedLoaderData<typeof loader>();
 
   return (
     <div className="min-h-full">
       <BottleView
         bottle={data.bottle}
-        note={note}
+        note={data.note}
       />
     </div>
   );

@@ -2,6 +2,7 @@ import { Note } from "@prisma/client";
 import { ActionArgs, LoaderArgs, redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, useCatch, useLoaderData } from "@remix-run/react";
+import { typedjson, useTypedLoaderData } from "remix-typedjson";
 import invariant from "tiny-invariant";
 
 import { getBottle, deleteBottle, getNotesInBottle } from "~/models/bottle.server";
@@ -22,7 +23,7 @@ export async function loader({ request, params }: LoaderArgs) {
 
   const qrCodeUrl = getQrCodeUrl(params.bottleId);
 
-  return json({ bottle, notes, qrCodeUrl });
+  return typedjson({ bottle, notes, qrCodeUrl });
 }
 
 function getQrCodeUrl(id: string): string {
@@ -42,13 +43,13 @@ export async function action({ request, params }: ActionArgs) {
 }
 
 export default function BottleDetailsPage() {
-  const data = useLoaderData<typeof loader>();
+  const data = useTypedLoaderData<typeof loader>();
 
   return (
     <div>
       <BottleBoardView
         bottle={data.bottle}
-        notes={data.notes?.notes}
+        notes={data.notes}
       />
 
       <h3 className="text-xl py-4 font-bold">Admin Functionality</h3>
