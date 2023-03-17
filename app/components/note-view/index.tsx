@@ -17,7 +17,7 @@ function formatDate(date: string): string {
     }
 }
 
-export default function Note({ id, title, body, createdAt }: NoteProps) {
+export function NoteView({ id, title, body, createdAt }: NoteProps) {
     return (
         <div
             className="box-border relative h-64 w-64 p-4 border-4 bg-yellow-100 shadow-lg shadow-black-500/50">

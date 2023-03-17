@@ -7,7 +7,7 @@ interface GenericToolbarProps {
     menuLinkUrl: string;
 }
 
-export default function GenericToolbar({ titleMessage, titleLinkUrl, menuMessage, menuLinkUrl }: GenericToolbarProps) {
+export function GenericToolbar({ titleMessage, titleLinkUrl, menuMessage, menuLinkUrl }: GenericToolbarProps) {
     return (
         <div className="flex justify-between items-center bg-slate-800 p-2 text-yellow-400">
             <Link to={titleLinkUrl} className="flex items-center w-full h-full">

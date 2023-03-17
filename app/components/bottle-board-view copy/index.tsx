@@ -7,7 +7,7 @@ interface BottleBoardViewProps {
     notes: Array<any> | undefined;
 }
 
-export function BottleBoardView({ bottle, notes}: BottleBoardViewProps) {
+export default function BottleBoardView({ bottle, notes}: BottleBoardViewProps) {
     return (
         <div className="mx-auto max-w-sm sm:max-w-xl lg:max-w-4xl w-full px-8 sm:px-0">
             <div className="pb-4">

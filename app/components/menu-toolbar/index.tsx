@@ -1,6 +1,6 @@
-import GenericToolbar from "~/components/generic-toolbar";
+import { GenericToolbar } from "~/components/generic-toolbar";
 
-export default function MenuToolbar() {
+export function MenuToolbar() {
     return (
         <GenericToolbar
             titleMessage="message~in~a~bottle"

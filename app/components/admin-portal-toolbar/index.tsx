@@ -1,6 +1,6 @@
-import GenericToolbar from "../generic-toolbar";
+import { GenericToolbar } from "../generic-toolbar";
 
-export default function AdminPortalToolbar() {
+export function AdminPortalToolbar() {
     return (
         <GenericToolbar
             titleMessage="message~in~a~bottle"

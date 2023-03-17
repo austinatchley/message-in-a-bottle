@@ -22,7 +22,7 @@ function getQrCodeUrl(relativePath: string, width: number = 100, height: number 
     return `https://api.qrserver.com/v1/create-qr-code/?size=${width}x${height}&data=${url}`;
 }
 
-export default function QrCode({ relativePath, width, height }: QrCodeProps) {
+export function QrCode({ relativePath, width, height }: QrCodeProps) {
 
     const qrCodeUrl = getQrCodeUrl(relativePath, width, height);
     const printableQrCodeUrl = getQrCodeUrl(relativePath, PRINTABLE_WIDTH, PRINTABLE_HEIGHT);

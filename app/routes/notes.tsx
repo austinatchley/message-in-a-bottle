@@ -1,6 +1,6 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
-import MenuToolbar from "~/components/menu-toolbar";
+import { MenuToolbar } from "~/components/menu-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
   return null;

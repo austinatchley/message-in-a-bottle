@@ -1,13 +1,14 @@
 import { NoteView } from "../note-view";
 import { QrCode } from "../qr-code";
 import { Link } from "@remix-run/react";
+import { Note } from "@prisma/client";
 
-interface BottleBoardViewProps {
+interface BottleViewProps {
     bottle: any;
-    notes: Array<any> | undefined;
+    note?: Note;
 }
 
-export function BottleBoardView({ bottle, notes}: BottleBoardViewProps) {
+export function BottleView({ bottle, note }: BottleViewProps) {
     return (
         <div className="mx-auto max-w-sm sm:max-w-xl lg:max-w-4xl w-full px-8 sm:px-0">
             <div className="pb-4">
@@ -20,15 +21,17 @@ export function BottleBoardView({ bottle, notes}: BottleBoardViewProps) {
                 </div>
 
                 <div className="relative grid grid-cols-3 lg:grid-cols-4 gap-4 py-4 ml-4">
-                    {notes?.map(note =>
-                        <NoteView
-                            key={note.id}
-                            id={note.id}
-                            title={note.title}
-                            body={note.body}
-                            createdAt={note.createdAt}
-                        />
-                    )}
+                    {
+                        note ? (
+                    <NoteView
+                        key={note.id}
+                        id={note.id}
+                        title={note.title}
+                        body={note.body}
+                        createdAt={note.createdAt.toString()}
+                    />
+                        ) : null
+                    }
                 </div>
             </div>
 

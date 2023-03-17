@@ -2,7 +2,7 @@ import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
-import Note from "~/components/note";
+import { NoteView } from "~/components/note-view";
 
 import { deleteNote, getNote } from "~/models/note.server";
 
@@ -32,7 +32,7 @@ export default function NoteDetailsPage() {
   return (
     <div>
       <div className="flex relative">
-        <Note
+        <NoteView
           id={data.note.id}
           body={data.note.body}
           title={data.note.title}

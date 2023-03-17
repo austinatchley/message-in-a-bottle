@@ -1,12 +1,11 @@
+import { Note } from "@prisma/client";
 import { ActionArgs, LoaderArgs, redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
-import Note from "~/components/note";
-import QrCode from "~/components/qr-code";
 
 import { getBottle, deleteBottle, getNotesInBottle } from "~/models/bottle.server";
-import BottleBoardView from "../../../components/bottle-board-view";
+import { BottleBoardView } from "../../../components/bottle-board-view";
 
 export async function loader({ request, params }: LoaderArgs) {
   invariant(params.bottleId, "bottleId not found");
@@ -16,7 +15,7 @@ export async function loader({ request, params }: LoaderArgs) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const notes = await getNotesInBottle({ id: params.bottleId });
+  const notes: Note[] = await getNotesInBottle({ id: params.bottleId });
   if (!notes) {
     throw new Response("Not Found", { status: 404 });
   }
