@@ -1,10 +1,9 @@
 import { ActionArgs, LoaderArgs, redirect } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { useCatch, useLoaderData } from "@remix-run/react";
+import { useCatch } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { BottleView } from "../../components/bottle-view";
 
-import { getBottle, deleteBottle, getNotesInBottle, GetBottleReturnType } from "~/models/bottle.server";
+import { getBottle, deleteBottle, GetBottleReturnType } from "~/models/bottle.server";
 import { Note } from "@prisma/client";
 import { typedjson, useTypedLoaderData } from "remix-typedjson";
 
@@ -16,12 +15,15 @@ export async function loader({ request, params }: LoaderArgs) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const note: Note | undefined = getNote(bottle.notes);
+  // TODO: Explore note filtering on the DB side through narrowing the query. Currently we are 
+  // fetching all notes and filtering them on the server
+  const note: Note | undefined = selectNote(bottle.notes);
 
   return typedjson({ bottle, note });
 }
 
-function getNote(notes: Note[]): Note | undefined {
+// Given a bottle's contents, select a single note to show the user
+function selectNote(notes: Note[]): Note | undefined {
   if (notes.length <= 0) {
     return undefined;
   }

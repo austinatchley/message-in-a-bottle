@@ -11,31 +11,28 @@ interface BottleViewProps {
 export function BottleView({ bottle, note }: BottleViewProps) {
     return (
         <div className="mx-auto max-w-sm sm:max-w-xl lg:max-w-4xl w-full px-8 sm:px-0">
-            <div className="pb-4">
-                <h1 className="text-2xl text-bold font-title text-left">{bottle.title}</h1>
+            <div className="mx-auto box-border max-w-lg border-2 border-stone-800 rounded-md bg-slate-200">
+                <h1 className="p-8 text-2xl text-bold font-title text-center">{bottle.title}</h1>
             </div>
 
-            <div className="relative box-border w-full border-2 border-stone-800 rounded-md bg-slate-200">
-                <div className="w-full rounded-md bg-sky-200 px-4 py-3">
-                    <div className="text-left text-xl font-medium text-black">Notes</div>
-                </div>
-
-                <div className="relative grid grid-cols-3 lg:grid-cols-4 gap-4 py-4 ml-4">
+            { /* TODO: Add functionality to destroy notes after they have been read. Rate limit note retrieval per user */ }
+            <div className="relative w-full pb-20">
+                <div className="w-full flex mx-auto py-4 ml-4">
                     {
                         note ? (
-                    <NoteView
-                        key={note.id}
-                        id={note.id}
-                        title={note.title}
-                        body={note.body}
-                        createdAt={note.createdAt.toString()}
-                    />
+                            <div className="mx-auto">
+                                <NoteView
+                                    key={note.id}
+                                    id={note.id}
+                                    title={note.title}
+                                    body={note.body}
+                                    createdAt={note.createdAt.toString()}
+                                />
+                            </div>
                         ) : null
                     }
                 </div>
             </div>
-
-            <div className="pt-20"></div>
             <hr></hr>
 
             <div className="px-4 py-10 flex justify-around h-full w-full">
