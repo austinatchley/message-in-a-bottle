@@ -1,57 +1,28 @@
-import { ActionArgs, LoaderArgs, redirect } from "@remix-run/node";
+import { LoaderArgs } from "@remix-run/node";
 import { useCatch } from "@remix-run/react";
 import invariant from "tiny-invariant";
-import { BottleView } from "../../components/bottle-view";
+import { NoteView } from "../../components/note-view";
 
-import { getBottle, deleteBottle, GetBottleReturnType } from "~/models/bottle.server";
-import { Note } from "@prisma/client";
 import { typedjson, useTypedLoaderData } from "remix-typedjson";
-import { getNote, GetNoteReturnType } from "~/models/note.server";
-
-
-/*
-TODO: Extract code from this file and bring it to the necessary place under notes/
-*/
+import { takeNote } from "~/models/note.server";
 
 export async function loader({ request, params }: LoaderArgs) {
   invariant(params.noteId, "noteId not found");
 
-  const note: GetNoteReturnType = await getNote({ id: params.noteId });
+  const note = await takeNote({ id: params.noteId });
   if (!note) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  // TODO: Explore note filtering on the DB side through narrowing the query. Currently we are 
-  // fetching all notes and filtering them on the server
-
   return typedjson({ note });
 }
 
-// Given a bottle's contents, select a single note to show the user
-function selectNote(notes: Note[]): Note | undefined {
-  if (notes.length <= 0) {
-    return undefined;
-  }
-
-  // TODO: Implement a note selection strategy
-  return notes[0];
-}
-
-export async function action({ request, params }: ActionArgs) {
-  invariant(params.bottleId, "bottleId not found");
-
-  await deleteBottle({ id: params.bottleId });
-
-  return redirect("/bottles");
-}
-
-export default function BottleDetailsPage() {
+export default function NoteDetailsPage() {
   const data = useTypedLoaderData<typeof loader>();
 
   return (
     <div className="min-h-full">
-      <BottleView
-        bottle={data.bottle}
+      <NoteView
         note={data.note}
       />
     </div>

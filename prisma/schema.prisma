@@ -13,20 +13,5 @@ model Note {
   title String
   body  String
 
-  xpos  Int @default(0)
-  ypos  Int @default(0)
-
-  createdAt DateTime @default(now())
-
-  bottle    Bottle? @relation(fields: [bottleId], references: [id])
-  bottleId  String?
-}
-
-model Bottle {
-  id    String @id @default(cuid())
-
-  title String
-  notes Note[]
-
   createdAt DateTime @default(now())
 }

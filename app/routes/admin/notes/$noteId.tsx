@@ -1,15 +1,17 @@
+import { Note } from "@prisma/client";
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { NoteView } from "~/components/note-view";
 
-import { deleteNote, getNote } from "~/models/note.server";
+import { deleteNote, takeNote } from "~/models/note.server";
 
 export async function loader({ request, params }: LoaderArgs) {
   invariant(params.noteId, "noteId not found");
 
-  const note = await getNote({ id: params.noteId });
+  const note = await takeNote({ id: params.noteId });
+  console.log(note);
   if (!note) {
     throw new Response("Not Found", { status: 404 });
   }
@@ -28,15 +30,18 @@ export async function action({ request, params }: ActionArgs) {
 
 export default function NoteDetailsPage() {
   const data = useLoaderData<typeof loader>();
+  const note: Note = {
+    id: data.note.id,
+    body: data.note.body,
+    title: data.note.title,
+    createdAt: new Date(data.note.createdAt)
+  }
 
   return (
     <div>
       <div className="flex relative">
         <NoteView
-          id={data.note.id}
-          body={data.note.body}
-          title={data.note.title}
-          createdAt={data.note.createdAt}
+          note={note}
         />
       </div>
       <hr className="my-4"></hr>

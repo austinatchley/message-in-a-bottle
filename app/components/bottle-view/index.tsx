@@ -23,10 +23,7 @@ export function BottleView({ bottle, note }: BottleViewProps) {
                             <div className="mx-auto">
                                 <NoteView
                                     key={note.id}
-                                    id={note.id}
-                                    title={note.title}
-                                    body={note.body}
-                                    createdAt={note.createdAt.toString()}
+                                    note={note}
                                 />
                             </div>
                         ) : null
