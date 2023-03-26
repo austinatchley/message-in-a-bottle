@@ -19,7 +19,6 @@ export async function loader({ request, params }: LoaderArgs) {
   return json({ note });
 }
 
-
 export async function action({ request, params }: ActionArgs) {
   invariant(params.noteId, "noteId not found");
 
@@ -34,15 +33,13 @@ export default function NoteDetailsPage() {
     id: data.note.id,
     body: data.note.body,
     title: data.note.title,
-    createdAt: new Date(data.note.createdAt)
-  }
+    createdAt: new Date(data.note.createdAt),
+  };
 
   return (
     <div>
-      <div className="flex relative">
-        <NoteView
-          note={note}
-        />
+      <div className="relative flex">
+        <NoteView note={note} />
       </div>
       <hr className="my-4"></hr>
       <h3 className="text-2xl font-bold">Debug</h3>
@@ -50,7 +47,7 @@ export default function NoteDetailsPage() {
       <p className="py-2">{"body: " + data.note.body}</p>
 
       <hr className="my-4" />
-      <h3 className="text-xl py-4 font-bold">Admin Functionality</h3>
+      <h3 className="py-4 text-xl font-bold">Admin Functionality</h3>
 
       <div className="flex flex-row">
         <div className="p-4">

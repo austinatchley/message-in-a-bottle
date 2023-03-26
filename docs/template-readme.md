@@ -22,7 +22,6 @@ npx create-remix@latest --template remix-run/blues-stack
 
 Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --template your/repo`! Make it your own.
 
-
 ## Development
 
 - This step only applies if you've opted out of having the CLI install dependencies for you:

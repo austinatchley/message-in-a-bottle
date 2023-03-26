@@ -48,13 +48,11 @@ export default function NewNotePage() {
   }, [actionData]);
 
   return (
-    <div className="flex flex-col w-full h-full max-w-sm mx-auto">
-      <div className="m-auto bg-slate-100 rounded shadow border-slate-800 border-2">
-        <div className="py-4 bg-slate-600 w-full">
-          <label className="text-white pl-4 font-title">
-            <span>
-              New Note
-            </span>
+    <div className="mx-auto flex h-full w-full max-w-sm flex-col">
+      <div className="m-auto rounded border-2 border-slate-800 bg-slate-100 shadow">
+        <div className="w-full bg-slate-600 py-4">
+          <label className="pl-4 font-title text-white">
+            <span>New Note</span>
           </label>
         </div>
         <Form
@@ -66,16 +64,17 @@ export default function NewNotePage() {
             gap: 8,
             width: "100%",
           }}
-          className="shadow-md rounded px-8 pt-6 pb-8"
+          className="rounded px-8 pt-6 pb-8 shadow-md"
         >
-
           <div>
-            <label className="flex w-full flex-col gap-1 mb-2">
-              <span className="block text-gray-700 text-md font-bold">Title</span>
+            <label className="mb-2 flex w-full flex-col gap-1">
+              <span className="text-md block font-bold text-gray-700">
+                Title
+              </span>
               <input
                 ref={titleRef}
                 name="title"
-                className="flex-1 shadow rounded border border-slate-400 px-3 text-lg leading-loose"
+                className="flex-1 rounded border border-slate-400 px-3 text-lg leading-loose shadow"
                 aria-invalid={actionData?.errors?.title ? true : undefined}
                 aria-errormessage={
                   actionData?.errors?.title ? "title-error" : undefined
@@ -91,12 +90,14 @@ export default function NewNotePage() {
 
           <div>
             <label className="flex w-full flex-col gap-1">
-              <span className="block text-gray-700 text-md font-bold">Message</span>
+              <span className="text-md block font-bold text-gray-700">
+                Message
+              </span>
               <textarea
                 ref={bodyRef}
                 name="body"
                 rows={8}
-                className="w-full flex-1 shadow rounded border border-slate-400 py-2 px-3 text-lg leading-6"
+                className="w-full flex-1 rounded border border-slate-400 py-2 px-3 text-lg leading-6 shadow"
                 aria-invalid={actionData?.errors?.body ? true : undefined}
                 aria-errormessage={
                   actionData?.errors?.body ? "body-error" : undefined
@@ -110,7 +111,7 @@ export default function NewNotePage() {
             )}
           </div>
 
-          <div className="text-right mt-6">
+          <div className="mt-6 text-right">
             <button
               type="submit"
               className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"

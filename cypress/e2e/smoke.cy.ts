@@ -3,15 +3,15 @@ import { faker } from "@faker-js/faker";
 describe("smoke tests", () => {
   const testNote = {
     title: faker.lorem.words(1),
-    body: faker.lorem.sentences(1)
+    body: faker.lorem.sentences(1),
   };
 
   const testBottle = {
-    title: faker.lorem.words(1)
+    title: faker.lorem.words(1),
   };
 
-  beforeEach(() => { });
-  afterEach(() => { });
+  beforeEach(() => {});
+  afterEach(() => {});
 
   it("should allow you to view notes", () => {
     cy.visitAndCheck("/admin");

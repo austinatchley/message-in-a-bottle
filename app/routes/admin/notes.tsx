@@ -28,7 +28,9 @@ export default function NotesPage() {
                 <li key={note.id}>
                   <NavLink
                     className={({ isActive }) =>
-                      `block border-b p-4 text-xl ${isActive ? "bg-indigo-200" : "bg-indigo-100"}`
+                      `block border-b p-4 text-xl ${
+                        isActive ? "bg-indigo-200" : "bg-indigo-100"
+                      }`
                     }
                     to={note.id}
                   >
@@ -44,6 +46,6 @@ export default function NotesPage() {
           <Outlet />
         </div>
       </main>
-    </div >
+    </div>
   );
 }

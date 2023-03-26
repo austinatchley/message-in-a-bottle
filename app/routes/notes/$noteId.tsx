@@ -22,9 +22,7 @@ export default function NoteDetailsPage() {
 
   return (
     <div className="min-h-full">
-      <NoteView
-        note={data.note}
-      />
+      <NoteView note={data.note} />
     </div>
   );
 }

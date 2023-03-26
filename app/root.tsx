@@ -11,12 +11,13 @@ import {
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 
-const googleFontsImportUrl: string = "https://fonts.googleapis.com/css2?family=Chonburi&family=JetBrains+Mono&family=Prompt&family=Unbounded&family=VT323&display=swap";
+const googleFontsImportUrl: string =
+  "https://fonts.googleapis.com/css2?family=Chonburi&family=JetBrains+Mono&family=Prompt&family=Unbounded&family=VT323&display=swap";
 
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "stylesheet", href: googleFontsImportUrl }
+    { rel: "stylesheet", href: googleFontsImportUrl },
   ];
 };
 
@@ -27,8 +28,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export async function loader({ request }: LoaderArgs) {
-  return json({
-  });
+  return json({});
 }
 
 export default function App() {

@@ -16,9 +16,9 @@ export async function action({ request }: ActionArgs) {
 
 export default function TakeNotePage() {
   return (
-    <div className="flex flex-col w-full h-full mx-auto">
+    <div className="mx-auto flex h-full w-full flex-col">
       <div className="m-auto">
-        <div className="flex flex-col w-full justify-between h-fit">
+        <div className="flex h-fit w-full flex-col justify-between">
           <Form
             method="post"
             reloadDocument
@@ -29,18 +29,21 @@ export default function TakeNotePage() {
               width: "100%",
             }}
           >
-            <h1 className="font-bold pb-2 text-center">
+            <h1 className="pb-2 text-center font-bold">
               Are you sure you want to take a note?
             </h1>
 
-            <button type="submit" className="p-8 bg-yellow-500 rounded-md shadow-lg">
-              <div className="text-center text-slate-900">
-                Yes
-              </div>
+            <button
+              type="submit"
+              className="rounded-md bg-yellow-500 p-8 shadow-lg"
+            >
+              <div className="text-center text-slate-900">Yes</div>
             </button>
 
-
-            <button type="button" className="mx-auto w-3/4 h-full py-2 bg-amber-500 rounded-md text-slate-900">
+            <button
+              type="button"
+              className="mx-auto h-full w-3/4 rounded-md bg-amber-500 py-2 text-slate-900"
+            >
               <Link to="/bottle" className="mx-2 text-center">
                 No, return to staring into the bottle void
               </Link>
