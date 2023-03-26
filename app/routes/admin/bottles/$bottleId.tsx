@@ -1,7 +1,6 @@
 import { Note } from "@prisma/client";
 import { ActionArgs, LoaderArgs, redirect } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { Form, Link, useCatch, useLoaderData } from "@remix-run/react";
+import { Form, Link, useCatch } from "@remix-run/react";
 import { typedjson, useTypedLoaderData } from "remix-typedjson";
 import invariant from "tiny-invariant";
 
