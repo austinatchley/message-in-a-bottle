@@ -33,7 +33,7 @@ export default function Index() {
           </div>
           <div className="mx-auto text-slate-800">
             <Link
-              to="/bottles"
+              to="/bottle"
               prefetch="intent"
               className="p-20 py-4 text-center rounded-md border shadow-lg shadow-amber-300/40 hover:shadow-amber-500/60 bg-gradient-to-bl from-yellow-300 to-amber-300"
             >

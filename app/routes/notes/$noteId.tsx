@@ -6,20 +6,25 @@ import { BottleView } from "../../components/bottle-view";
 import { getBottle, deleteBottle, GetBottleReturnType } from "~/models/bottle.server";
 import { Note } from "@prisma/client";
 import { typedjson, useTypedLoaderData } from "remix-typedjson";
+import { getNote, GetNoteReturnType } from "~/models/note.server";
+
+
+/*
+TODO: Extract code from this file and bring it to the necessary place under notes/
+*/
 
 export async function loader({ request, params }: LoaderArgs) {
-  invariant(params.bottleId, "bottleId not found");
+  invariant(params.noteId, "noteId not found");
 
-  const bottle: GetBottleReturnType = await getBottle({ id: params.bottleId });
-  if (!bottle) {
+  const note: GetNoteReturnType = await getNote({ id: params.noteId });
+  if (!note) {
     throw new Response("Not Found", { status: 404 });
   }
 
   // TODO: Explore note filtering on the DB side through narrowing the query. Currently we are 
   // fetching all notes and filtering them on the server
-  const note: Note | undefined = selectNote(bottle.notes);
 
-  return typedjson({ bottle, note });
+  return typedjson({ note });
 }
 
 // Given a bottle's contents, select a single note to show the user
@@ -63,7 +68,7 @@ export function CatchBoundary() {
   const caught = useCatch();
 
   if (caught.status === 404) {
-    return <div>Bottle not found</div>;
+    return <div>Note not found</div>;
   }
 
   throw new Error(`Unexpected caught response with status: ${caught.status}`);

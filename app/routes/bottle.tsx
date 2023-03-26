@@ -6,7 +6,7 @@ export async function loader({ request }: LoaderArgs) {
   return null;
 }
 
-export default function Boards() {
+export default function BottlePage() {
   const data = useLoaderData<typeof loader>();
 
   return (

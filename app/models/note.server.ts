@@ -1,35 +1,31 @@
 import { prisma } from "~/db.server";
-import type { Note } from "@prisma/client";
+import type { Note, Prisma } from "@prisma/client";
 
+// TODO: Implement types for each server-side function
+export type GetNoteReturnType = Prisma.PromiseReturnType<typeof getNote>;
 export function getNote(
   { id }: Pick<Note, "id">) {
   return prisma.note.findFirst({
-    select: { id: true, bottleId: true, body: true, title: true, xpos: true, ypos: true, createdAt: true },
+    select: { id: true, body: true, title: true, createdAt: true },
     where: { id },
   });
 }
 
 export function getNotes() {
   return prisma.note.findMany({
-    select: { id: true, title: true, xpos: true, ypos: true },
+    select: { id: true, title: true },
     orderBy: { createdAt: "desc" },
   });
 }
 
 export function createNote({
   body,
-  title,
-  xpos,
-  ypos,
-  bottleId
-}: Pick<Note, "body" | "title" | "xpos" | "ypos" | "bottleId">) {
+  title
+}: Pick<Note, "body" | "title">) {
   return prisma.note.create({
     data: {
       title,
       body,
-      xpos,
-      ypos,
-      bottleId
     },
   });
 }

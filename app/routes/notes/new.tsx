@@ -5,14 +5,7 @@ import * as React from "react";
 import { createNote } from "~/models/note.server";
 
 export async function loader({ request, params }: LoaderArgs) {
-  const url = new URL(request.url);
-  const bottleId = url.searchParams.get("bottleId");
-
-  if (!bottleId) {
-    throw new Response("Malformed input. Bottle ID is null", { status: 400 });
-  }
-
-  return json({ bottleId });
+  return json({});
 }
 
 export async function action({ request }: ActionArgs) {
@@ -20,50 +13,28 @@ export async function action({ request }: ActionArgs) {
   const title = formData.get("title");
   const body = formData.get("body");
 
-  const xpos = 0; // TODO: Add functionality for gathering this data from click location
-  const ypos = 0;
-
-  const url = new URL(request.url);
-  const bottleId = url.searchParams.get("bottleId");
-
   if (typeof title !== "string" || title.length === 0) {
     return json(
-      { errors: { title: "Title is required", body: null, xpos: 0, ypos: 0, bottleId: null } },
+      { errors: { title: "Title is required", body: null } },
       { status: 400 }
     );
   }
 
   if (typeof body !== "string" || body.length === 0) {
     return json(
-      { errors: { body: "Body is required", title: null, xpos: 0, ypos: 0, bottleId: null } },
+      { errors: { body: "Body is required", title: null } },
       { status: 400 }
     );
   }
 
-  if (typeof xpos !== "number") {
-    return json(
-      { errors: { xpos: "xpos is required", title: null, body: null, ypos: 0, bottleId: null } },
-      { status: 400 }
-    );
-  }
+  await createNote({ title, body });
 
-  if (typeof ypos !== "number") {
-    return json(
-      { errors: { ypos: "ypos is required", title: null, xpos: 0, body: null, bottleId: null } },
-      { status: 400 }
-    );
-  }
-
-  const note = await createNote({ title, body, xpos: Number(xpos), ypos: Number(ypos), bottleId });
-
-  return redirect(`/bottles/${bottleId}`);
+  return redirect(`/notes/create`);
 }
 
 export default function NewNotePage() {
   const data = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
-
-  const bottleIdRef = React.useRef<HTMLTextAreaElement>(null);
 
   const titleRef = React.useRef<HTMLInputElement>(null);
   const bodyRef = React.useRef<HTMLTextAreaElement>(null);
@@ -77,7 +48,7 @@ export default function NewNotePage() {
   }, [actionData]);
 
   return (
-    <div className="flex flex-col w-full mt-20 max-w-sm mx-auto">
+    <div className="flex flex-col w-full h-full max-w-sm mx-auto">
       <div className="m-auto bg-slate-100 rounded shadow border-slate-800 border-2">
         <div className="py-4 bg-slate-600 w-full">
           <label className="text-white pl-4 font-title">
@@ -165,6 +136,8 @@ export function CatchBoundary() {
   if (caught.status === 404) {
     return <div>Page not found</div>;
   }
+
+  console.log(caught);
 
   throw new Error(`Unexpected caught response with status: ${caught.status}`);
 }

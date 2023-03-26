@@ -43,8 +43,6 @@ export default function NoteDetailsPage() {
       <h3 className="text-2xl font-bold">Debug</h3>
       <h3 className="py-2">{"title: " + data.note.title}</h3>
       <p className="py-2">{"body: " + data.note.body}</p>
-      <p className="py-2">{"xpos: " + data.note.xpos}</p>
-      <p className="py-2">{"ypos: " + data.note.ypos}</p>
 
       <hr className="my-4" />
       <h3 className="text-xl py-4 font-bold">Admin Functionality</h3>
