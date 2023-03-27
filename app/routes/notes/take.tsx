@@ -1,8 +1,17 @@
-import type { ActionArgs } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, Link } from "@remix-run/react";
+import { Form, Link, useLoaderData } from "@remix-run/react";
+import { typedjson, useTypedLoaderData } from "remix-typedjson";
 
 import { getFirstNote } from "~/models/note.server";
+
+export async function loader({ request, context, params }: LoaderArgs) {
+
+  // TODO: Implement rate limiter
+  // TODO: Extract the client IP from Fly's `fly-client-ip` header https://fly.io/docs/reference/runtime-environment/#fly-client-ip
+
+  return typedjson({});
+}
 
 export async function action({ request }: ActionArgs) {
   const note = await getFirstNote();
@@ -15,6 +24,8 @@ export async function action({ request }: ActionArgs) {
 }
 
 export default function TakeNotePage() {
+  const data = useTypedLoaderData<typeof loader>();
+
   return (
     <div className="mx-auto flex h-full w-full flex-col">
       <div className="m-auto">
