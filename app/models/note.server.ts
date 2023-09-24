@@ -9,12 +9,9 @@ export async function getNote({ id }: Pick<Note, "id">) {
   });
 }
 
-export type GetFirstNoteReturnType = Prisma.PromiseReturnType<
-  typeof getFirstNote
->;
-export async function getFirstNote() {
+export type SelectNoteReturnType = Prisma.PromiseReturnType<typeof selectNote>;
+export async function selectNote() {
   // TODO: Implement a better note selection strategy
-
   // Returns the first note it finds
   return prisma.note.findFirst({
     select: { id: true, body: true, title: true, createdAt: true },
@@ -23,12 +20,13 @@ export async function getFirstNote() {
 
 export type TakeNoteReturnType = Prisma.PromiseReturnType<typeof takeNote>;
 export async function takeNote({ id }: Pick<Note, "id">) {
-  // Take a note and delete it from the DB
+  // Retrieve the data contained in a note and delete it from the DB
   const note: GetNoteReturnType = await getNote({ id });
   if (!note) {
     return null;
   }
 
+  // TODO: Check for successful deletion
   await prisma.note.delete({
     where: {
       id: note.id,
@@ -38,8 +36,10 @@ export async function takeNote({ id }: Pick<Note, "id">) {
   return note;
 }
 
-export type GetNotesReturnType = Prisma.PromiseReturnType<typeof getNotes>;
-export async function getNotes() {
+export type GetAllNotesReturnType = Prisma.PromiseReturnType<
+  typeof getAllNotes
+>;
+export async function getAllNotes() {
   return prisma.note.findMany({
     select: { id: true, title: true },
     orderBy: { createdAt: "desc" },

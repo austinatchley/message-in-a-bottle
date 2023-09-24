@@ -2,12 +2,12 @@ import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
-import { getNotes } from "~/models/note.server";
+import { getAllNotes } from "~/models/note.server";
 
 import { AdminPortalToolbar } from "~/components/admin-portal-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
-  const noteListItems = await getNotes();
+  const noteListItems = await getAllNotes();
   return json({ noteListItems });
 }
 

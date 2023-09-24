@@ -3,7 +3,7 @@ import { json, redirect } from "@remix-run/node";
 import { Form, Link, useLoaderData } from "@remix-run/react";
 import { typedjson, useTypedLoaderData } from "remix-typedjson";
 
-import { getFirstNote } from "~/models/note.server";
+import { selectNote } from "~/models/note.server";
 
 export async function loader({ request, context, params }: LoaderArgs) {
 
@@ -14,7 +14,7 @@ export async function loader({ request, context, params }: LoaderArgs) {
 }
 
 export async function action({ request }: ActionArgs) {
-  const note = await getFirstNote();
+  const note = await selectNote();
 
   if (!note) {
     return json({ errors: { note: null }, status: 500 });
@@ -48,7 +48,9 @@ export default function TakeNotePage() {
               type="submit"
               className="rounded-md bg-yellow-500 p-8 shadow-lg"
             >
-              <div className="text-center text-slate-900">Yes</div>
+              <div className="text-center text-slate-900">
+                Yes, take a note
+              </div>
             </button>
 
             <button
@@ -56,7 +58,7 @@ export default function TakeNotePage() {
               className="mx-auto h-full w-3/4 rounded-md bg-amber-500 py-2 text-slate-900"
             >
               <Link to="/bottle" className="mx-2 text-center">
-                No, return to staring into the bottle void
+                No
               </Link>
             </button>
           </Form>
