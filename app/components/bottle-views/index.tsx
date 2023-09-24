@@ -28,10 +28,7 @@ export default function BottleBoardView({
           {notes?.map((note) => (
             <NoteView
               key={note.id}
-              id={note.id}
-              title={note.title}
-              body={note.body}
-              createdAt={note.createdAt}
+              note={note}
             />
           ))}
         </div>
