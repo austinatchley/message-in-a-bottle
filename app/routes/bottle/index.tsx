@@ -13,6 +13,7 @@ export default function BottleIndexPage() {
               <div className="w-full pt-2">
                 <img
                   src="/images/the_bottle_1.png"
+                  alt="Put a message in the bottle"
                   className="mx-auto w-full"
                 ></img>
               </div>
@@ -29,6 +30,7 @@ export default function BottleIndexPage() {
               <div className="w-full pt-2">
                 <img
                   src="/images/the_bottle_1.png"
+                  alt="Take a message from the bottle"
                   className="mx-auto w-full"
                 ></img>
               </div>

@@ -1,5 +1,5 @@
 import type { LoaderArgs } from "@remix-run/node";
-import { Outlet, useLoaderData } from "@remix-run/react";
+import { Outlet } from "@remix-run/react";
 import { MenuToolbar } from "~/components/menu-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
@@ -7,8 +7,6 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 export default function BottlePage() {
-  const data = useLoaderData<typeof loader>();
-
   return (
     <div className="flex h-full min-h-screen flex-col">
       <header>
