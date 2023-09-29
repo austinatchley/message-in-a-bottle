@@ -42,6 +42,13 @@ export function useMatchesData(
   return route?.data;
 }
 
+/**
+ * Used for basic "admin password" functionality. This is a quick and dirty
+ * solution that works for the current iteration of the application (no
+ * private data or user profiles). If any private data is needed in the
+ * future, use Github Actions Secrets in conjunction with Fly.io secrets to
+ * achieve better security
+ */
 export function getAdminPassword() {
-  return process.env.FLY_MACHINE_ID ?? "fallback";
+  return process.env.FLY_MACHINE_ID ?? "local";
 }
