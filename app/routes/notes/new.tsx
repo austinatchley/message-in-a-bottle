@@ -33,7 +33,6 @@ export async function action({ request }: ActionArgs) {
 }
 
 export default function NewNotePage() {
-  const data = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
 
   const titleRef = React.useRef<HTMLInputElement>(null);

@@ -41,3 +41,7 @@ export function useMatchesData(
   );
   return route?.data;
 }
+
+export function getAdminPassword() {
+  return process.env.FLY_MACHINE_ID ?? "fallback";
+}

@@ -1,4 +1,11 @@
+import { LoaderArgs, json } from "@remix-run/node";
 import { Link } from "@remix-run/react";
+import { getAdminPassword } from "~/utils";
+
+export async function loader({ request, params }: LoaderArgs) {
+  console.log(getAdminPassword());
+  return json({});
+}
 
 export default function Index() {
   return (
