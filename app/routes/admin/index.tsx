@@ -6,10 +6,7 @@ import { getAdminPassword } from "~/utils";
 
 export async function action({ request, params }: ActionArgs) {
   const formData = await request.formData();
-
   const password = formData.get("password");
-  console.log(password);
-  console.log(getAdminPassword());
 
   if (typeof password !== "string" || password !== getAdminPassword()) {
     return json(
