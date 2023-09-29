@@ -4,7 +4,7 @@ import { NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
 import { getAllNotes } from "~/models/note.server";
 
-import { AdminPortalToolbar } from "~/components/admin-portal-toolbar";
+import { MenuToolbar } from "~/components/menu-toolbar";
 
 export async function loader({ request }: LoaderArgs) {
   const noteListItems = await getAllNotes();
@@ -16,7 +16,7 @@ export default function NotesPage() {
 
   return (
     <div className="flex h-full min-h-screen flex-col">
-      <AdminPortalToolbar />
+      <MenuToolbar />
 
       <main className="flex h-full bg-stone-100">
         <div className="h-full w-80 border-r">
