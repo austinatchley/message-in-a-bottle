@@ -1,8 +1,18 @@
-import type { ActionArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 import React from "react";
+import { redirect } from "remix-typedjson";
+import { createUserAdminSession, getAdminStatus } from "~/session.server";
 import { getAdminPassword } from "~/utils";
+
+export async function loader({ request, params }: LoaderArgs) {
+  if (await getAdminStatus(request)) {
+    return redirect("/admin/notes");
+  }
+
+  return json({});
+}
 
 export async function action({ request, params }: ActionArgs) {
   const formData = await request.formData();
@@ -15,7 +25,7 @@ export async function action({ request, params }: ActionArgs) {
     );
   }
 
-  return redirect("/admin/notes");
+  return createUserAdminSession(request, "/admin/notes");
 }
 
 export default function Index() {

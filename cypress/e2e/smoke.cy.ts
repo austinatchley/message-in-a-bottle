@@ -29,6 +29,11 @@ describe("smoke tests", () => {
 
     cy.findByRole("button", { name: /delete/i }).click();
   });
+
+  it("should not allow unauthenticated visitors to access admin view", () => {
+    cy.visit("/admin/notes");
+    cy.findByText("Password"); // Redirected to /admin to enter password
+  });
 });
 
 function enterAdminNotesView() {

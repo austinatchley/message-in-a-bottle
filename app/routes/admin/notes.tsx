@@ -5,8 +5,10 @@ import { NavLink, Outlet, useLoaderData } from "@remix-run/react";
 import { getAllNotes } from "~/models/note.server";
 
 import { MenuToolbar } from "~/components/menu-toolbar";
+import { requireAdminAccess } from "~/session.server";
 
 export async function loader({ request }: LoaderArgs) {
+  await requireAdminAccess(request);
   const noteListItems = await getAllNotes();
   return json({ noteListItems });
 }

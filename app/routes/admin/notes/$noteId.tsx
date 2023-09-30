@@ -5,12 +5,15 @@ import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { NoteView } from "~/components/note-view";
 
-import { deleteNote, takeNote } from "~/models/note.server";
+import { deleteNote, getNote, takeNote } from "~/models/note.server";
+import { requireAdminAccess } from "~/session.server";
 
 export async function loader({ request, params }: LoaderArgs) {
   invariant(params.noteId, "noteId not found");
 
-  const note = await takeNote({ id: params.noteId });
+  await requireAdminAccess(request);
+
+  const note = await getNote({ id: params.noteId });
   if (!note) {
     throw new Response("Not Found", { status: 404 });
   }
