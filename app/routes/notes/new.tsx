@@ -49,7 +49,7 @@ export default function NewNotePage() {
   return (
     <div className="mx-auto flex h-full w-full max-w-sm flex-col">
       <div className="m-auto rounded border-2 border-theme-primary bg-theme-white shadow">
-        <div className="w-full bg-slate-600 py-4">
+        <div className="w-full bg-theme-accent-2 py-4">
           <label className="pl-4 font-title text-white">
             <span>New Note</span>
           </label>
@@ -113,7 +113,7 @@ export default function NewNotePage() {
           <div className="mt-6 text-right">
             <button
               type="submit"
-              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
+              className="rounded border-2 border-theme-accent-2 bg-theme-accent-1 px-4 py-2 text-theme-accent-2 hover:bg-theme-secondary focus:bg-blue-400"
             >
               Save
             </button>

@@ -50,14 +50,14 @@ export default function TakeNotePage() {
               <div className="text-center text-slate-900">Yes, take a note</div>
             </button>
 
-            <button
-              type="button"
-              className="mx-auto h-full w-3/4 rounded-md bg-amber-500 py-2 text-slate-900"
-            >
-              <Link to="/bottle" className="mx-2 text-center">
+            <Link to="/bottle" className="mx-2 text-center">
+              <button
+                type="button"
+                className="mx-auto h-full w-3/4 rounded-md bg-amber-500 py-2 text-slate-900"
+              >
                 No
-              </Link>
-            </button>
+              </button>
+            </Link>
           </Form>
         </div>
       </div>

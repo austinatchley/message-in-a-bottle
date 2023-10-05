@@ -13,11 +13,11 @@ export default function BottlePage() {
         <MenuToolbar />
       </header>
 
-      <main className="flex h-fit bg-theme-white">
-        <div className="flex-1 p-6">
+      <div className="relative flex flex-grow">
+        <main className="flex-1 bg-theme-white p-6">
           <Outlet />
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
