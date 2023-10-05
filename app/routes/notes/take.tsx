@@ -6,7 +6,6 @@ import { typedjson, useTypedLoaderData } from "remix-typedjson";
 import { selectNote } from "~/models/note.server";
 
 export async function loader({ request, context, params }: LoaderArgs) {
-
   // TODO: Implement rate limiter
   // TODO: Extract the client IP from Fly's `fly-client-ip` header https://fly.io/docs/reference/runtime-environment/#fly-client-ip
 
@@ -46,11 +45,9 @@ export default function TakeNotePage() {
 
             <button
               type="submit"
-              className="rounded-md bg-yellow-500 p-8 shadow-lg"
+              className="rounded-md bg-theme-secondary p-8 shadow-lg"
             >
-              <div className="text-center text-slate-900">
-                Yes, take a note
-              </div>
+              <div className="text-center text-slate-900">Yes, take a note</div>
             </button>
 
             <button

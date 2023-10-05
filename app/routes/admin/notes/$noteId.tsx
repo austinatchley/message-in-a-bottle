@@ -5,7 +5,7 @@ import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { NoteView } from "~/components/note-view";
 
-import { deleteNote, getNote, takeNote } from "~/models/note.server";
+import { deleteNote, getNote } from "~/models/note.server";
 import { requireAdminAccess } from "~/session.server";
 
 export async function loader({ request, params }: LoaderArgs) {

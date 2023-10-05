@@ -25,7 +25,7 @@ export async function action({ request, params }: ActionArgs) {
     );
   }
 
-  return createUserAdminSession(request, "/admin/notes");
+  return createUserAdminSession(request, "/admin/notes", true);
 }
 
 export default function Index() {
@@ -39,11 +39,11 @@ export default function Index() {
   }, [actionData]);
 
   return (
-    <main className="relative min-h-screen bg-slate-800 sm:flex sm:items-center sm:justify-center">
-      <div className="relative bg-slate-500 sm:w-full sm:rounded-2xl sm:pb-8 sm:pt-8 md:w-1/2 lg:w-1/3">
+    <main className="relative min-h-screen bg-theme-primary sm:flex sm:items-center sm:justify-center">
+      <div className="relative sm:pb-8 sm:pt-8 md:w-1/2 lg:w-1/3">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="relative sm:overflow-hidden sm:rounded-2xl">
-            <div className="relative bg-yellow-500 px-4 pb-8 pt-16 sm:px-6 sm:pb-14 sm:pt-24 lg:px-8 lg:pb-20 lg:pt-32">
+            <div className="relative bg-theme-secondary px-4 pb-8 pt-16 sm:px-6 sm:pb-14 sm:pt-24 lg:px-8 lg:pb-20 lg:pt-32">
               <h1 className="font-body text-center text-2xl tracking-tight sm:text-2xl lg:text-3xl">
                 <div className="block pb-8 font-title font-bold text-slate-700">
                   Admin Portal
@@ -88,7 +88,7 @@ export default function Index() {
                 <div className="mt-6 text-right">
                   <button
                     type="submit"
-                    className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
+                    className="rounded bg-theme-accent-2 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
                   >
                     Enter
                   </button>

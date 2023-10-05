@@ -15,8 +15,8 @@ export default function About() {
         <MenuToolbar />
       </header>
 
-      <main className="flex h-full bg-yellow-400">
-        <div className="container m-auto w-full max-w-lg rounded border-2 border-slate-800 bg-slate-100 shadow">
+      <main className="flex h-full bg-theme-secondary">
+        <div className="container m-auto w-full max-w-lg rounded border-2 border-theme-primary bg-theme-white shadow">
           <div className="w-full bg-slate-600 py-4">
             <span className="pl-4 font-title text-white">About</span>
           </div>
