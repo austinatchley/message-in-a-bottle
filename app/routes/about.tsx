@@ -15,9 +15,9 @@ export default function About() {
         <MenuToolbar />
       </header>
 
-      <main className="flex h-full bg-theme-secondary">
+      <main className="flex h-full bg-theme-white">
         <div className="container m-auto w-full max-w-lg rounded border-2 border-theme-primary bg-theme-white shadow">
-          <div className="w-full bg-slate-600 py-4">
+          <div className="w-full bg-theme-accent-2 py-4">
             <span className="pl-4 font-title text-white">About</span>
           </div>
           <div className="w-full p-8">
@@ -29,8 +29,8 @@ export default function About() {
             </p>
             <br></br>
             <div className="text-center text-blue-600">
-              <a href="https://www.austinatchley.xyz">
-                See the latest progress on austinatchley.xyz
+              <a href="https://github.com/austinatchley/message-in-a-bottle">
+                See the latest progress on GitHub
               </a>
             </div>
           </div>

@@ -9,18 +9,18 @@ export const meta: MetaFunction = () => ({
 export default function Index() {
   return (
     <main className="flex min-h-screen flex-col justify-evenly bg-theme-primary bg-landing-page-background bg-repeat-x md:items-center md:justify-center">
-      <div className="max-w-3xl pt-16">
+      <div className="max-w-3xl pt-8">
         <div className="mx-auto bg-zinc-800">
           <img src="/images/splash.jpg"></img>
         </div>
 
-        <div className="mx-auto my-16 h-fit rounded-md border border-theme-primary bg-slate-400 text-theme-primary">
-          <div className="m-2 h-1/2 rounded-md border border-theme-primary bg-slate-200 px-2 py-2 text-center text-theme-primary">
+        <div className="mx-auto my-8 h-fit rounded-md border border-theme-primary bg-slate-400 text-theme-primary">
+          <div className="m-2 h-1/2 rounded-md border border-theme-primary bg-slate-200 p-2 text-center text-theme-primary">
             Anonymously exchange messages with your virtual neighbors
           </div>
         </div>
 
-        <div className="my-8 flex h-full w-full flex-row justify-evenly font-medium sm:mt-20">
+        <div className="my-4 flex h-full w-full flex-row justify-evenly font-medium sm:mt-14">
           <div className="mx-auto text-theme-primary">
             <Link
               to="/about"
