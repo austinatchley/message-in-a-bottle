@@ -8,12 +8,12 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function BottlePage() {
   return (
-    <div className="flex h-full min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col">
       <header>
         <MenuToolbar />
       </header>
 
-      <main className="flex h-full bg-theme-white">
+      <main className="flex h-fit bg-theme-white">
         <div className="flex-1 p-6">
           <Outlet />
         </div>
