@@ -21,7 +21,7 @@ export default function NoteDetailsPage() {
   const data = useTypedLoaderData<typeof loader>();
 
   return (
-    <div className="min-h-full">
+    <div className="sm:pt-28">
       <NoteView note={data.note} />
     </div>
   );

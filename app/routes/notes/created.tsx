@@ -1,13 +1,6 @@
-import { LoaderArgs, json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
-
-export async function loader({ request, params }: LoaderArgs) {
-  return json({});
-}
+import { Link } from "@remix-run/react";
 
 export default function CreateNotePage() {
-  const data = useLoaderData<typeof loader>();
-
   return (
     <div className="m-auto flex h-full w-fit flex-col justify-center">
       <div className="rounded border-2 border-theme-primary bg-theme-accent-1 shadow">
