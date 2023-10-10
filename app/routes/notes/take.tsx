@@ -28,7 +28,10 @@ export default function TakeNotePage() {
   return (
     <div className="mx-auto flex h-full w-full flex-col">
       <div className="m-auto">
-        <div className="flex h-fit w-full flex-col justify-between">
+        <h1 className="py-24 text-center text-4xl font-bold">
+          Are you sure you want to take a note?
+        </h1>
+        <div className="mx-auto flex h-fit w-fit flex-col justify-between">
           <Form
             method="post"
             reloadDocument
@@ -39,13 +42,9 @@ export default function TakeNotePage() {
               width: "100%",
             }}
           >
-            <h1 className="pb-2 text-center font-bold">
-              Are you sure you want to take a note?
-            </h1>
-
             <button
               type="submit"
-              className="rounded-md bg-theme-secondary p-8 shadow-lg"
+              className="border border-theme-primary bg-theme-secondary p-8 shadow-lg hover:animate-pulse hover:invert"
             >
               <div className="text-center text-slate-900">Yes, take a note</div>
             </button>
@@ -53,7 +52,7 @@ export default function TakeNotePage() {
             <Link to="/bottle" className="mx-2 text-center">
               <button
                 type="button"
-                className="mx-auto h-full w-3/4 rounded-md bg-amber-500 py-2 text-slate-900"
+                className="mx-auto h-full w-full border border-theme-primary bg-amber-500 py-2 text-slate-900 hover:animate-pulse hover:invert"
               >
                 No
               </button>

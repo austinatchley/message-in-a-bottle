@@ -1,5 +1,5 @@
 import { LoaderArgs } from "@remix-run/node";
-import { useCatch } from "@remix-run/react";
+import { Link, useCatch } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { NoteView } from "../../components/note-view";
 
@@ -21,8 +21,16 @@ export default function NoteDetailsPage() {
   const data = useTypedLoaderData<typeof loader>();
 
   return (
-    <div className="sm:pt-28">
-      <NoteView note={data.note} />
+    <div className="m-auto flex h-full w-fit flex-col justify-around">
+      <div className="h-fit">
+        <NoteView note={data.note} />
+      </div>
+      <Link
+        to="/bottle"
+        className="border-1 mb-8 w-full border border-black bg-theme-secondary px-4 py-2 text-center text-theme-accent-2"
+      >
+        Return to bottle
+      </Link>
     </div>
   );
 }

@@ -1,12 +1,9 @@
-import { ActionArgs, LoaderArgs, json, redirect } from "@remix-run/node";
-import { Form, useActionData, useCatch, useLoaderData } from "@remix-run/react";
+import type { ActionArgs } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
+import { Form, useActionData, useCatch } from "@remix-run/react";
 import * as React from "react";
 
 import { createNote } from "~/models/note.server";
-
-export async function loader({ request, params }: LoaderArgs) {
-  return json({});
-}
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
