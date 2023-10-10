@@ -1,6 +1,7 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, Link, useLoaderData } from "@remix-run/react";
+import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
+import React from "react";
 import { typedjson, useTypedLoaderData } from "remix-typedjson";
 
 import { selectNote } from "~/models/note.server";
@@ -13,10 +14,14 @@ export async function loader({ request, context, params }: LoaderArgs) {
 }
 
 export async function action({ request }: ActionArgs) {
+  console.log(request);
   const note = await selectNote();
 
   if (!note) {
-    return json({ errors: { note: null }, status: 500 });
+    return json({
+      errors: { note: "No notes left. Please add one", redirect: "/notes/new" },
+      status: 500,
+    });
   }
 
   return redirect(`/notes/${note.id}`);
@@ -24,6 +29,7 @@ export async function action({ request }: ActionArgs) {
 
 export default function TakeNotePage() {
   const data = useTypedLoaderData<typeof loader>();
+  const actionData = useActionData<typeof action>();
 
   return (
     <div className="mx-auto flex h-full w-full flex-col">
@@ -45,21 +51,40 @@ export default function TakeNotePage() {
               width: "100%",
             }}
           >
-            <button
-              type="submit"
-              className="border border-theme-primary bg-theme-secondary p-8 shadow-lg hover:animate-pulse hover:invert"
-            >
-              <div className="text-center text-slate-900">Yes, take a note</div>
-            </button>
-
-            <Link to="/bottle" className="mx-2 text-center">
+            {actionData?.errors.note == null ? (
               <button
-                type="button"
-                className="mx-auto h-full w-full border border-theme-primary bg-amber-500 py-2 text-slate-900 hover:animate-pulse hover:invert"
+                type="submit"
+                className="border border-theme-primary bg-theme-secondary p-8 shadow-lg hover:animate-pulse hover:invert"
               >
-                No
+                <div className="text-center text-slate-900">
+                  "Yes, take a note"
+                </div>
               </button>
-            </Link>
+            ) : (
+              <Link to={actionData.errors.redirect}>
+                <button
+                  type="button"
+                  className="border border-theme-primary bg-theme-error p-8 shadow-lg hover:animate-pulse"
+                >
+                  <div className="text-center text-slate-900">
+                    {actionData?.errors.note}
+                  </div>
+                </button>
+              </Link>
+            )}
+
+            {actionData?.errors.note == null ? (
+              <Link to="/bottle" className="mx-2 text-center">
+                <button
+                  type="button"
+                  className="mx-auto h-full w-full border border-theme-primary bg-amber-500 py-2 text-slate-900 hover:animate-pulse hover:invert"
+                >
+                  No
+                </button>
+              </Link>
+            ) : (
+              <div></div>
+            )}
           </Form>
         </div>
       </div>
