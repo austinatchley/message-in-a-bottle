@@ -28,9 +28,12 @@ export default function TakeNotePage() {
   return (
     <div className="mx-auto flex h-full w-full flex-col">
       <div className="m-auto">
-        <h1 className="py-24 text-center text-4xl font-bold">
+        <h1 className="pb-8 text-center text-4xl font-bold">
           Are you sure you want to take a note?
         </h1>
+        <h2 className="animate-pulse pb-16 text-center text-2xl font-light">
+          It will disappear after you have taken it
+        </h2>
         <div className="mx-auto flex h-fit w-fit flex-col justify-between">
           <Form
             method="post"
