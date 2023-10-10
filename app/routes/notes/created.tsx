@@ -16,6 +16,7 @@ export default function CreateNotePage() {
       </div>
       <Link
         to="/bottle"
+        prefetch="intent"
         className="my-4 w-full border border-black bg-theme-secondary px-4 py-2 text-center text-theme-accent-2"
       >
         Return to bottle

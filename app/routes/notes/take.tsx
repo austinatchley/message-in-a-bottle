@@ -61,7 +61,7 @@ export default function TakeNotePage() {
                 </div>
               </button>
             ) : (
-              <Link to={actionData.errors.redirect}>
+              <Link to={actionData.errors.redirect} prefetch="intent">
                 <button
                   type="button"
                   className="border border-theme-primary bg-theme-error p-8 shadow-lg hover:animate-pulse"
@@ -74,7 +74,7 @@ export default function TakeNotePage() {
             )}
 
             {actionData?.errors.note == null ? (
-              <Link to="/bottle" className="mx-2 text-center">
+              <Link to="/bottle" className="mx-2 text-center" prefetch="intent">
                 <button
                   type="button"
                   className="mx-auto h-full w-full border border-theme-primary bg-amber-500 py-2 text-slate-900 hover:animate-pulse hover:invert"
