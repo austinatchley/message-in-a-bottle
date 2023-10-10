@@ -21,7 +21,7 @@ module.exports = {
         "theme-error": "#fca5a5"
       },
       backgroundImage: {
-        "landing-page-img": "url('/images/landing.jpg')",
+        "landing-page-img": "url('/images/landing.png')",
       },
     },
   },

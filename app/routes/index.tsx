@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => ({
 
 export default function Index() {
   return (
-    <main className="flex min-h-screen flex-col justify-evenly bg-theme-primary md:items-center md:justify-center">
+    <main className="flex min-h-screen flex-col justify-evenly bg-theme-primary bg-landing-page-img bg-repeat-x md:items-center md:justify-center">
       <div className="max-w-3xl pt-8">
         <div className="mx-auto border-4 border-amber-400 bg-zinc-800">
           <img src="/images/splash.jpg" alt=""></img>
