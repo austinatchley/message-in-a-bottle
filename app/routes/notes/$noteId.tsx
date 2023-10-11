@@ -27,7 +27,7 @@ export default function NoteDetailsPage() {
       </div>
       <Link
         to="/bottle"
-        className="border-1 mb-8 w-full border border-black bg-theme-secondary px-4 py-2 text-center text-theme-accent-2"
+        className="border-1 mb-8 w-full rounded-md border border-theme-accent-2 bg-theme-accent-1 px-4 py-2 text-center text-theme-accent-2 hover:bg-theme-secondary"
       >
         Return to bottle
       </Link>

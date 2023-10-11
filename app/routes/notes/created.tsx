@@ -17,7 +17,7 @@ export default function CreateNotePage() {
       <Link
         to="/bottle"
         prefetch="intent"
-        className="my-4 w-full border border-black bg-theme-secondary px-4 py-2 text-center text-theme-accent-2"
+        className="my-4 w-full rounded-md border border-theme-accent-2 bg-theme-accent-1 px-4 py-2 text-center text-theme-accent-2 hover:bg-theme-secondary"
       >
         Return to bottle
       </Link>

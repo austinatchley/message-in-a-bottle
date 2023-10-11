@@ -19,8 +19,8 @@ export function GenericToolbar({
         </div>
       </Link>
 
-      <div className="min-w-20 m-2 flex items-center justify-end bg-theme-accent-1 hover:bg-theme-secondary">
-        <h1 className="px-2 text-center text-2xl text-theme-accent-2">
+      <div className="min-w-20 mx-2 my-1 flex items-center justify-end rounded border border-theme-primary bg-theme-accent-1 hover:bg-theme-secondary">
+        <h1 className="px-3 py-1 text-center text-xl text-theme-accent-2">
           <Link to={menuLinkUrl}>{menuMessage}</Link>
         </h1>
       </div>

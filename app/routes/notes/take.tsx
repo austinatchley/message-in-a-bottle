@@ -54,17 +54,17 @@ export default function TakeNotePage() {
             {actionData?.errors.note == null ? (
               <button
                 type="submit"
-                className="border border-theme-primary bg-theme-secondary p-8 shadow-lg hover:animate-pulse hover:invert"
+                className="rounded-md border border-theme-primary bg-theme-secondary px-8 py-4 shadow-lg hover:animate-pulse hover:invert"
               >
                 <div className="text-center text-slate-900">
-                  "Yes, take a note"
+                  Yes, take a note
                 </div>
               </button>
             ) : (
               <Link to={actionData.errors.redirect} prefetch="intent">
                 <button
                   type="button"
-                  className="border border-theme-primary bg-theme-error p-8 shadow-lg hover:animate-pulse"
+                  className="rounded-md border border-theme-primary bg-theme-error p-8 shadow-lg hover:animate-pulse"
                 >
                   <div className="text-center text-slate-900">
                     {actionData?.errors.note}
@@ -77,7 +77,7 @@ export default function TakeNotePage() {
               <Link to="/bottle" className="mx-2 text-center" prefetch="intent">
                 <button
                   type="button"
-                  className="mx-auto h-full w-full border border-theme-primary bg-amber-500 py-2 text-slate-900 hover:animate-pulse hover:invert"
+                  className="mx-auto h-full w-full rounded-md border border-theme-primary bg-amber-500 py-2 text-slate-900 hover:animate-pulse hover:invert"
                 >
                   No
                 </button>

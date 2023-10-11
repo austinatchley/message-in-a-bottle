@@ -70,7 +70,7 @@ export default function NewNotePage() {
               <input
                 ref={titleRef}
                 name="title"
-                className="flex-1 rounded border border-slate-400 px-3 text-lg leading-loose shadow"
+                className="flex-1 rounded border border-slate-400 bg-white px-3 text-lg leading-loose shadow focus:border-theme-accent-2 focus:outline-none focus:ring-0"
                 aria-invalid={actionData?.errors?.title ? true : undefined}
                 aria-errormessage={
                   actionData?.errors?.title ? "title-error" : undefined
@@ -93,7 +93,7 @@ export default function NewNotePage() {
                 ref={bodyRef}
                 name="body"
                 rows={8}
-                className="w-full flex-1 rounded border border-slate-400 px-3 py-2 text-lg leading-6 shadow"
+                className="w-full flex-1 rounded border border-slate-400 bg-white px-3 py-2 text-lg leading-6 shadow focus:border-theme-accent-2 focus:outline-none focus:ring-0"
                 aria-invalid={actionData?.errors?.body ? true : undefined}
                 aria-errormessage={
                   actionData?.errors?.body ? "body-error" : undefined
@@ -110,7 +110,7 @@ export default function NewNotePage() {
           <div className="mt-6 text-right">
             <button
               type="submit"
-              className="rounded border-2 border-theme-accent-2 bg-theme-accent-1 px-4 py-2 text-theme-accent-2 hover:bg-theme-secondary focus:bg-blue-400"
+              className="rounded border-2 border-theme-accent-2 bg-theme-accent-1 px-4 py-2 text-theme-accent-2 hover:bg-theme-secondary focus:bg-theme-secondary"
             >
               Save
             </button>
