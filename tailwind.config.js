@@ -18,7 +18,7 @@ module.exports = {
         "theme-accent-1": "#bfdbfe",
         "theme-accent-2": "#283859",
         "theme-note": "#fef9c3",
-        "theme-error": "#fca5a5"
+        "theme-error": "#fca5a5",
       },
       backgroundImage: {
         "landing-page-img": "url('/images/landing.png')",
