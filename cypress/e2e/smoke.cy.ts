@@ -27,6 +27,7 @@ describe("smoke tests", () => {
     enterAdminNotesView();
     cy.contains(testNote.title).click();
 
+    cy.wait(2000);
     cy.findByRole("button", { name: /delete/i }).click();
   });
 
