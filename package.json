@@ -40,6 +40,7 @@
     "@remix-run/react": "1.19.3",
     "@remix-run/server-runtime": "1.19.3",
     "bcryptjs": "^2.4.3",
+    "caniuse-lite": "^1.0.30001588",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
     "date-fns": "^2.29.3",
