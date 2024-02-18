@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 
 export default function BottleIndexPage() {
   return (
-    <div className="mx-auto flex h-full w-full flex-row justify-evenly gap-4 py-16 sm:px-32 lg:py-48">
+    <div className="mx-auto flex h-full w-full flex-row gap-4 py-16 sm:px-32 sm:justify-center md:justify-evenly lg:py-48">
       <div className="max-w-[18rem] grow border border-theme-accent-1 bg-theme-accent-1 shadow-md hover:shadow-lg">
         <Link to="/notes/new" className="flex h-full flex-col">
           <p className="grow pt-12 text-center font-accent text-4xl">
